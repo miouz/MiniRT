@@ -1,0 +1,28 @@
+on:
+  push:
+  pull_request:
+  
+  # Allows to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+  
+    steps:
+  # get codes from from repo
+      - name: Checkout codes
+        uses: actions/checkout@v4
+        
+
+  # norm the code
+      - name: Norminette
+        uses: alexandregv/norminette-action@v3
+        with:
+          flags: '.'
+        
+  # build project
+      - name: Build project
+        run:  make
+      
