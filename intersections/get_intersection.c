@@ -10,12 +10,31 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "intersection.h"
+#include "../minirt.h"
+#include <math.h>
 #include <stdlib.h>
 
 int	get_sphere_intersect_point(t_object *object, t_ray *ray, t_intersect *intersect_point)
 {
+	double			l;
+	double			new_t;
+	t_coordinates	sphere_to_ray;
+	double			sphere_to_ray_perpendicular;
 
+	vec_substract(object->center, ray->origin, &sphere_to_ray);
+	l = vec_dot_product(sphere_to_ray, ray->direction);
+	//no intersection with this sphyere
+	if (l < 0)
+		return (intersect_point->t = -1, EXIT_FAILURE);
+	sphere_to_ray_perpendicular = sqrt(pow(vec_magnitude(sphere_to_ray), 2) - l * l);
+	if (sphere_to_ray_perpendicular < 0)
+		return (intersect_point->t = -1, EXIT_FAILURE);
+	if (sphere_to_ray_perpendicular > object->diameter)
+		return (intersect_point->t = -1, EXIT_SUCCESS);
+	new_t = l - sqrt(pow(object->diameter, 2) - pow(sphere_to_ray_perpendicular, 2));
+	if (intersect_point->t == -1 || intersect_point->t >= 0 && new_t < intersect_point->t)
+		intersect_point->t = new_t;
+	return (EXIT_SUCCESS);
 }
 
 /**
