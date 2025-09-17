@@ -11,8 +11,10 @@
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
-#define MINIRT_H
+# define MINIRT_H
 
+# include "intersections/intersection.h"
+# include "vector_operations/vector_operations.h"
 # include <math.h>
 # include <stdio.h>
 
