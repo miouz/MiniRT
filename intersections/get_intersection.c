@@ -61,7 +61,7 @@ int	get_object_closest_intersect_point(t_ray *ray, t_object *object,
 /**
  * @brief calcul the hit point of the given ray
  *
- * @param intersect_point address of the intersect_point to fill.
+ * @param intersect_point address of one intersect_point to fill.
  * @param ray the given ray to calculate for.
  * @param scene the scene composed by an array of object.
  * @return EXIT_SUCCESS or EXIT_FAILURE.
@@ -69,14 +69,12 @@ int	get_object_closest_intersect_point(t_ray *ray, t_object *object,
 int	get_hit_point(t_intersect *intersect_point, t_ray *ray,
 							t_object *scene)
 {
-	t_intersect	*all_intersect_points[SCENE_OBJECT_QUANTITIES];
 	int			object_index;
 
 	object_index = 0;
 	while (object_index < SCENE_OBJECT_QUANTITIES)
 	{
-		get_object_closest_intersect_point(ray, &scene[object_index], &all_intersect_points[object_index]);
-		sort_intersect_points(intersect_point, ray, all_intersect_points);
+		get_object_closest_intersect_point(ray, &scene[object_index], intersect_point);
 		object_index++;
 	}
 	return (EXIT_SUCCESS);

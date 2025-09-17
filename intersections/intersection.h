@@ -16,7 +16,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include "../minirt.h"
 
 typedef struct s_ray
 {
@@ -27,7 +26,7 @@ typedef struct s_ray
 typedef struct s_intersect
 {
     double  	t;
-    t_object    obj;
+    t_object    *obj;
 }   t_intersect;
 
 int	get_hit_point(t_intersect *intersect_point, t_ray *ray, t_object *scene);
