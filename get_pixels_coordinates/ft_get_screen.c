@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_screen.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adriennony <adriennony@student.42.fr>      +#+  +:+       +#+        */
+/*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:54:16 by anony             #+#    #+#             */
-/*   Updated: 2025/09/18 18:16:21 by adriennony       ###   ########.fr       */
+/*   Updated: 2025/09/19 13:23:29 by anony            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_coordinates	ft_get_screen_center(t_camera cam)
 	t_coordinates	screen_center;
 	double		distance;
 
-	distance = (double)(LENGHT / 2) * (double)tan(cam.fov / 2);
+	distance = (double)(LENGHT / 2.0) * (double)tan(cam.fov / 2);
 	screen_center.type = 1;
 	screen_center.x = cam.center.x + distance * cam.direction.x;
 	screen_center.y = cam.center.y + distance * cam.direction.y;
@@ -30,7 +30,7 @@ t_coordinates	ft_get_u_screen_direction_vector(t_coordinates cam_dir)
 	t_coordinates	u;
 
 	u.type = 0;
-	if (cam_dir.x == 0.0 && cam_dir.z == 0)
+	if (cam_dir.x == 0.0 && cam_dir.z == 0.0)
 	{
 		u.x = 1;
 		u.y = 0;

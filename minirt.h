@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adriennony <adriennony@student.42.fr>      +#+  +:+       +#+        */
+/*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 16:37:40 by anony             #+#    #+#             */
-/*   Updated: 2025/09/18 18:45:34 by adriennony       ###   ########.fr       */
+/*   Updated: 2025/09/19 16:33:24 by anony            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,26 @@ typedef struct s_coordinates
 	int		type;
 }	t_coordinates;
 
+typedef struct s_minilibx_data
+{
+    void *mlx_p;
+    void *win_p;
+    void *img_p;
+    char *dat;
+    int bpp;
+    int line;
+    int end;
+}	t_minilibx_data;
 
 typedef struct s_data
 {
     t_camera    camera;
     t_ambient_lighting ambient_lighting;
     t_light     light;
-    t_object    *object;
+    t_object    *objects;
+    t_coordinates pixels[HEIGHT * LENGHT];
+    t_intersect intersects[HEIGHT * LENGHT];
+	char	*colors;
 }   t_data;
 
 // structures des differentes infos du parsing :
@@ -74,9 +87,15 @@ typedef struct s_light
 typedef struct s_object
 {
 	t_type	type;
-	void	*data;
-	struct s_object    *next;
+	t_object_union	data;
 }	t_object;
+
+typedef	union u_object_union
+{
+	t_plane	plane;
+	t_sphere	sphere;
+	t_cylinder	cylinder;
+}	t_object_union;
 
 typedef struct s_plane
 {
@@ -137,9 +156,7 @@ typedef enum e_type
 
 typedef struct s_intersect
 {
-	double	x;
-	double	y;
-	double	z;
+	t_coordinates	point;
 	t_object	*obj;
 }	t_intersect;
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_pixel.c                                     :+:      :+:    :+:   */
+/*   ft_get_pixels_coordinates.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adriennony <adriennony@student.42.fr>      +#+  +:+       +#+        */
+/*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 14:10:42 by anony             #+#    #+#             */
-/*   Updated: 2025/09/18 18:53:27 by adriennony       ###   ########.fr       */
+/*   Updated: 2025/09/19 13:24:58 by anony            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ t_coordinates	ft_get_first_pixel(t_screen scr)
 	double	v_offset;
 
 	if (LENGHT % 2 == 0)
-		u_offset = -1.0 * ((double)LENGHT / 2 - 0.5);
+		u_offset = -1.0 * ((double)LENGHT / 2.0 - 0.5);
 	else
-		u_offset = -1.0 * ((double)LENGHT / 2);
+		u_offset = -1.0 * ((double)LENGHT / 2.0);
 	if (HEIGHT % 2 == 0)
-		v_offset = (double)HEIGHT / 2 - 0.5;
+		v_offset = (double)HEIGHT / 2.0 - 0.5;
 	else
-		v_offset = (double)HEIGHT / 2;
+		v_offset = (double)HEIGHT / 2.0;
 	pixel.x = scr.center.x + u_offset * scr.u.x + v_offset * scr.v.x;
 	pixel.y = scr.center.y + u_offset * scr.u.y + v_offset * scr.v.y;
 	pixel.z = scr.center.z + u_offset * scr.u.z + v_offset * scr.v.z;
