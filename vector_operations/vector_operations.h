@@ -14,9 +14,13 @@
 # define VECTOR_OPERATIONS_H
 # define ERROR_VEC_TYPE "Error: vector conversion type error\n"
 
+t_coordinates	vec_substract(t_coordinates a, t_coordinates b);
+t_coordinates	vec_add(t_coordinates a, t_coordinates b);
+t_coordinates	vec_sclala_multiply(t_coordinates a, double b);
+t_coordinates	vec_scala_divide(t_coordinates a, double b);
+t_coordinates	vec_normalize(t_coordinates a);
+double	vec_dot_product(t_coordinates a, t_coordinates b);
 double	vec_magnitude(t_coordinates a);
-double	vec_dot(t_coordinates a, t_coordinates b);
-int		vec_substract(t_coordinates a, t_coordinates b, t_coordinates *c);
 
 #endif /* ifdef VECTOR_OPERATIONS_H
  */
