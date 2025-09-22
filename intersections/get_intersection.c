@@ -40,7 +40,7 @@ void	error_msg(char *msg)
  * @param ray address of the given ray.
  * @return time value if intersect, TIME_VAL_NO_INTERSECTION(-1) if no intersection. 
  */
-double	get_ray_sphere_intersect_time(t_object *object, t_ray *ray)
+double	get_ray_sphere_intersect_time(t_sphere *sphere, t_ray *ray)
 {
 	double			len;
 	t_coordinates	vec_sphere_to_ray;

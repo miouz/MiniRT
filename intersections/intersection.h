@@ -17,17 +17,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-typedef struct s_ray
-{
-	t_coordinates	origin;
-	t_coordinates	direction;
-}	t_ray;
-
-typedef struct s_intersect
-{
-    double  	t;
-    t_object    *obj;
-}   t_intersect;
-
-int	get_hit_point(t_intersect *intersect_point, t_ray *ray, t_object *scene);
+double	get_ray_plane_intersect_time(t_plane *plane, t_ray *ray);
+double	get_ray_cylinder_intersect_time(t_cylinder *cylinder, t_ray *ray);
+double	get_ray_sphere_intersect_time(t_sphere *sphere, t_ray *ray);
+int		get_hit_point(t_intersect *intersect_point, t_ray *ray, t_object *scene);
 #endif
