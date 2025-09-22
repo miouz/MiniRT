@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../minirt.h"
+#include <math.h>
 
 /**
  * @brief substract b from a (a - b)
@@ -80,14 +81,32 @@ t_coordinates	vec_normalize(t_coordinates a)
 
 double	vec_dot_product(t_coordinates a, t_coordinates b)
 {
-	if (a.c > 0 || b.c > 0)
-		error_msg(ERROR_VEC_TYPE);
+	// if (a.c > 0 || b.c > 0)
+	// 	error_msg(ERROR_VEC_TYPE);
 	return (a.x * b.x + a.y * b.y + a.z * b.z);
 }
 
 double	vec_magnitude(t_coordinates a)
 {
-	if (a.c > 0 || b.c > 0)
-		error_msg(ERROR_VEC_TYPE);
+	// if (a.c > 0 || b.c > 0)
+	// 	error_msg(ERROR_VEC_TYPE);
 	return (sqrt(a.x * a.x + a.y * a.y + a.z * a.z));
+}
+
+int	vec_equals(t_coordinates a, t_coordinates b, double epsilon)
+{
+	return (fabs(a.x - b.x) < epsilon
+		&& fabs(a.y - b.y) < epsilon
+		&& fabs(a.z - b.z) < epsilon);
+}
+
+t_coordinates	vec_creat(double x, double y, double z, int type)
+{
+	t_coordinates	vector;
+
+	vector.x = x;
+	vector.y = y;
+	vector.z = z;
+	vector.type = type;
+	return (vector);
 }
