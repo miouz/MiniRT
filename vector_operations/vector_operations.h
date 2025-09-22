@@ -12,6 +12,7 @@
 
 #ifndef VECTOR_OPERATIONS_H
 # define VECTOR_OPERATIONS_H
+# define EPLISON 0.000001
 
 /*==============================ERROR_MSG===================================*/
 # define ERROR_VEC_TYPE "Error: vector conversion type error\n"
