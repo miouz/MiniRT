@@ -12,14 +12,17 @@
 
 #include "../minirt.h"
 #include "intersection.h"
+#include "../vector_operations/vector_operations.h"
 #include <math.h>
 #include <stdlib.h>
 
 int	ft_strlen(char *str)
 {
 	int	size;
+	int	i;
 
-	sieze = 0;
+	size = 0;
+	i = 0;
 	while (str && str[i])
 		i++;
 	return (i);
@@ -31,32 +34,6 @@ void	error_msg(char *msg)
 
 	size = ft_strlen(msg);
 	write(2, msg, size);
-}
-
-/**
- * @brief get the ray's time value if it intersect a sphere
- *
- * @param object address of the sphere.
- * @param ray address of the given ray.
- * @return time value if intersect, TIME_VAL_NO_INTERSECTION(-1) if no intersection. 
- */
-double	get_ray_sphere_intersect_time(t_sphere *sphere, t_ray *ray)
-{
-	double			len;
-	t_coordinates	vec_sphere_to_ray;
-	double			sphere_to_ray_perpendicular;
-
-	vec_sphere_to_ray = vec_substract(object->center, ray->origin);
-	len = vec_dot_product(sphere_to_ray, ray->direction);
-	//no intersection with this sphyere
-	if (len < 0)
-		return (TIME_VAL_NO_INTERSECTION);
-	sphere_to_ray_perpendicular = sqrt(pow(vec_magnitude(sphere_to_ray), 2) - len * len);
-	if (sphere_to_ray_perpendicular < 0)
-		return (TIME_VAL_NO_INTERSECTION);
-	if (sphere_to_ray_perpendicular > object->diameter)
-		return (TIME_VAL_NO_INTERSECTION);
-	return (len - sqrt(pow(object->diameter, 2) - pow(sphere_to_ray_perpendicular, 2)));
 }
 
 /**
@@ -73,7 +50,7 @@ int	get_object_smallest_intersect_time(t_ray *ray, t_object *object,
 	double	new_time;
 
 	if (object->type == SPHERE)
-		new_time = get_ray_sphere_intersect_time(object, ray);
+		new_time = get_ray_sphere_intersect_time(&object->data.sphere, ray);
 	// else if (object->type == PLANE)
 	// 	new_time = get_plane_intersect_point(object, ray);
 	// else if (object->type == CYLINDER)
@@ -86,7 +63,7 @@ int	get_object_smallest_intersect_time(t_ray *ray, t_object *object,
 
 void	convert_ray_time_to_point(t_ray *ray, double time, t_intersect *intersect_point)
 {
-	*intersect_point->intersect = vec_add(ray->origin, vec_sclala_multiply(ray->direction, time));
+	*intersect_point->intersect = vec_add(ray->origin, vec_scala_multiply(ray->direction, time));
 }
 
 /**
