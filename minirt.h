@@ -60,7 +60,7 @@ typedef enum e_type
 typedef struct s_plane
 {
 	t_coordinates	point;
-	t_coordinates	orhto_vector;
+	t_coordinates	ortho_vector;
 	t_color			color;
 }	t_plane;
 
