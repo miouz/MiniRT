@@ -43,7 +43,7 @@ t_coordinates	vec_add(t_coordinates a, t_coordinates b)
 	return (c);
 }
 
-t_coordinates	vec_sclala_multiply(t_coordinates a, double b)
+t_coordinates	vec_scala_multiply(t_coordinates a, double b)
 {
 	t_coordinates	c;
 
