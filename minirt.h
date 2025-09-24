@@ -6,7 +6,7 @@
 /*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 16:37:40 by anony             #+#    #+#             */
-/*   Updated: 2025/09/19 16:33:24 by anony            ###   ########.fr       */
+/*   Updated: 2025/09/23 13:58:08 by anony            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 # define HEIGHT 400
 # define LENGHT 800
+# define EPSILON 0.00001
 
 // id varie de 1 au nombre de pixel max, la numerotation se fait ligne par ligne
 
@@ -71,6 +72,12 @@ typedef struct s_camera
 	int			fov;
 }	t_camera;
 
+typedef struct s_ray
+{
+	t_coordinates	origin;
+	t_coordinates	direction;
+}	t_ray;
+
 typedef struct s_ambient_lighting
 {
 	double  intensity;
@@ -88,6 +95,7 @@ typedef struct s_object
 {
 	t_type	type;
 	t_object_union	data;
+	t_color color; 
 }	t_object;
 
 typedef	union u_object_union
@@ -101,14 +109,12 @@ typedef struct s_plane
 {
 	t_coordinates	point;
 	t_coordinates   orhto_vector;
-	t_color color; 
 }	t_plane;
 
 typedef struct s_sphere
 {
 	t_coordinates	center;
 	double   diameter;
-	t_color color; 
 }	t_sphere;
 
 typedef struct s_cylinder
@@ -117,7 +123,6 @@ typedef struct s_cylinder
 	t_coordinates	axis_vector;
 	double   diameter;
 	double   height;
-	t_color color; 
 }	t_cylinder;
 
 // u et v vecteurs directeurs du plan contenant l ecran. u est orthogonal a l axe y vertical du repere orthonorme de la scene.
@@ -143,6 +148,12 @@ typedef enum e_type
 	CYLINDER
 }	t_type;
 
+typedef enum e_boolean
+{
+	FALSE,
+	TRUE
+}	t_boolean;
+
 // typedef struct s_object
 // {
 // 	t_type		type;
@@ -162,12 +173,15 @@ typedef struct s_intersect
 
 // utils.c
 
-// void    ft_free_camera(t_camera *cam);
-// void    ft_free_screen(t_screen *screen);
+double  absolute_value(double   nb);
 
 
 // ft_get_screen.c
 
 t_screen	ft_get_screen(t_camera cam);
+
+// ft_get_ortho_vector.c
+
+t_coordinates   ft_get_ortho_vector(t_intersect intersect);
 
 #endif
