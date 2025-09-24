@@ -51,10 +51,10 @@ int	get_object_smallest_intersect_time(t_ray *ray, t_object *object,
 
 	if (object->type == SPHERE)
 		new_time = get_ray_sphere_intersect_time(&object->data.sphere, ray);
-	// else if (object->type == PLANE)
-	// 	new_time = get_plane_intersect_point(object, ray);
-	// else if (object->type == CYLINDER)
-	// 	new_time = get_cylinder_intersect_point(object, ray, intersect_point);
+	else if (object->type == PLANE)
+		new_time = get_ray_plane_intersect_time(&object->data.plane, ray);
+	else if (object->type == CYLINDER)
+		new_time = get_ray_cylinder_intersect_time(&object->data.cylinder, ray);
 	//no tyoe corrresponds
 	if (*time == TIME_VAL_NO_INTERSECTION || *time >= 0 && new_time < *time)
 		*time = new_time;

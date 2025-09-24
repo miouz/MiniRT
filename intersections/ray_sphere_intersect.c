@@ -44,7 +44,7 @@ static double	get_time_from_discriminant(double a, double b, double discriminant
 
 /**
  * @brief get the ray's time value if it intersect a sphere
- * @detail at² + bt + c = 0 where:
+ *  at² + bt + c = 0 where:
  *	D = vector ray.direction, V = vector ray origin to sphere center.
  *	a = D·D
  *	b = 2*(D·V) = 2*dot(direction, origin - center)

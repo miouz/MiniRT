@@ -65,7 +65,6 @@ t_coordinates	vec_scala_divide(t_coordinates a, double b)
 	return (c);
 }
 
-
 t_coordinates	vec_normalize(t_coordinates a)
 {
 	t_coordinates	c;

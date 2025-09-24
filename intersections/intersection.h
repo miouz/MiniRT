@@ -17,6 +17,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdbool.h>
 
 double	get_ray_plane_intersect_time(t_plane *plane, t_ray *ray);
 double	get_ray_cylinder_intersect_time(t_cylinder *cylinder, t_ray *ray);
