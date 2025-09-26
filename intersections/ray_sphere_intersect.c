@@ -22,7 +22,7 @@
  * @return the smallest positive or zero value time 
  * 			or TIME_VAL_NO_INTERSECTION -1;
  */
-static double	get_time_from_discriminant(double a, double b, double discriminant)
+double	get_time_from_discriminant(double a, double b, double discriminant)
 {
 	double	t1;
 	double	t2;

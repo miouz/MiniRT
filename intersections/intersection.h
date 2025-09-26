@@ -19,6 +19,7 @@
 # include <stdlib.h>
 # include <stdbool.h>
 
+double	get_time_from_discriminant(double a, double b, double discriminant);
 double	get_ray_plane_intersect_time(t_plane *plane, t_ray *ray);
 double	get_ray_cylinder_intersect_time(t_cylinder *cylinder, t_ray *ray);
 double	get_ray_sphere_intersect_time(t_sphere *sphere, t_ray *ray);
