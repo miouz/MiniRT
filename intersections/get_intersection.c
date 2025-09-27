@@ -36,6 +36,11 @@ void	error_msg(char *msg)
 	write(2, msg, size);
 }
 
+void	convert_ray_time_to_point(t_ray *ray, double time, t_coordinates *point)
+{
+	*point = vec_add(ray->origin, vec_scala_multiply(ray->direction, time));
+}
+
 /**
  * @brief get the given ray's smallest time value of intersection point.
  *
@@ -45,7 +50,7 @@ void	error_msg(char *msg)
  * @return EXIT_SUCCESS or EXIT_FAILURE.
  */
 int	get_object_smallest_intersect_time(t_ray *ray, t_object *object,
-										double *time)
+										double *time, t_intersect *intersect_point)
 {
 	double	new_time;
 
@@ -55,15 +60,12 @@ int	get_object_smallest_intersect_time(t_ray *ray, t_object *object,
 		new_time = get_ray_plane_intersect_time(&object->data.plane, ray);
 	else if (object->type == CYLINDER)
 		new_time = get_ray_cylinder_intersect_time(&object->data.cylinder, ray);
-	//no tyoe corrresponds
-	if (*time == TIME_VAL_NO_INTERSECTION || *time >= 0 && new_time < *time)
+	if (new_time >= 0 && (*time == TIME_VAL_NO_INTERSECTION || new_time < *time))
+	{
 		*time = new_time;
+		intersect_point->obj = object;
+	}
 	return (EXIT_SUCCESS);
-}
-
-void	convert_ray_time_to_point(t_ray *ray, double time, t_intersect *intersect_point)
-{
-	*intersect_point->intersect = vec_add(ray->origin, vec_scala_multiply(ray->direction, time));
 }
 
 /**
@@ -78,23 +80,18 @@ int	get_hit_point(t_intersect *intersect_point, t_ray *ray,
 							t_object *scene)
 {
 	int		object_index;
-	double	time[SCENE_OBJECT_QUANTITIES];
+	double	time;
 
 	object_index = 0;
+	time = TIME_VAL_NO_INTERSECTION;
+	intersect_point->obj = NULL;
 	while (object_index < SCENE_OBJECT_QUANTITIES)
 	{
-		time[object_index] = TIME_VAL_NO_INTERSECTION;
-		get_object_smallest_intersect_time(ray, &scene[object_index], &time[object_index]);
-		//if there is hit point
-		if (time[object_index] >= 0)
-		{
-			convert_ray_time_to_point(ray, time[object_index], intersect_point);
-			intersect_point->obj = &scene[object_index];
-		}
-		//if no hit point
-		else
-			intersect_point->obj = NULL;
+		get_object_smallest_intersect_time(ray, &scene[object_index], &time, intersect_point);
 		object_index++;
 	}
+	//if there is hit point
+	if (time >= 0)
+		convert_ray_time_to_point(ray, time, &intersect_point->point);
 	return (EXIT_SUCCESS);
 }
