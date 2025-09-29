@@ -10,9 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-.SILENT
 NAME := miniRT
-# NAME_BONUS = fractol
 
 # ============================================================================ #
 #                               COMPILOR & FLAGS                                  #
@@ -47,19 +45,30 @@ MINILIBX_DIR := minilibx-linux
 VECTOR_DIR := $(SRC_DIR)/vector_operations
 INTER_DIR := $(SRC_DIR)/intersection
 RENDER_DIR := $(SRC_DIR)/rendering
-PARSE_DIR := $(SRC_DIR)/parsing
+SCREEN_DIR := $(SRC_DIR)/parsing
 UTILS_DIR := $(SRC_DIR)/utils
 
 # ============================================================================ #
 #                                  SOURCES                                     #
 # ============================================================================ #
 
-#srcs variables
-SRC = $(SRC_DIR)/*.c
+#Vector operations
+VECTOR_SRC := $(VECTOR_DIR)/vector_operations.c \
+			  $(VECTOR_DIR)/vector_utils.c
 
-# Convert source files to object files
-OBJS        := $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
-DEPS        := $(OBJS:.o=.d)
+#Intersection calculations
+INTER_SRC := $(INTER_DIR)/get_intersection.c \
+			 $(INTER_DIR)/ray_sphere_intersect.c \
+			 $(INTER_DIR)/ray_plane_intersect.c \
+			 $(INTER_DIR)/ray_cylinder_intersect.c
+
+#srcs variables
+SRCS :=	$(VECTOR_SRC) \
+		$(INTER_SRC) \
+
+#Convert source files to object files
+OBJS := $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+DEPS := $(OBJS:.o=.d)
 
 # ============================================================================ #
 #                                   COLORS                                     #
