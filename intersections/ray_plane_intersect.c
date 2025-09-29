@@ -43,7 +43,7 @@ double	get_ray_plane_intersect_time(t_plane *plane, t_ray *ray)
 	double	t;
 
 	denominator = vec_dot_product(ray->direction, plane->ortho_vector);
-	d = vec_dot_product(plane->ortho_vector, plane->point);
+	d = - vec_dot_product(plane->ortho_vector, plane->point);
 	//if its parallele and ray is int the plane
 	if (fabs(denominator) < EPSILON && check_ray_is_in_plane(plane, ray, d) == true)
 		return (t = 0);
