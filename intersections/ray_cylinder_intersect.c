@@ -55,7 +55,7 @@ bool	is_valid_time_and_on_caps(t_ray *ray, t_cylinder *cylinder, t_plane *cap, d
 	if (*time < 0)
 		return (false);
 	convert_ray_time_to_point(ray, *time, &p);
-	if (vec_magnitude(vec_substract(p, cap->ortho_vector)) <= cylinder->diameter / 2)
+	if (vec_magnitude(vec_substract(p, cap->point)) <= cylinder->diameter / 2)
 		return (true);
 	return (false);
 }
@@ -120,15 +120,18 @@ double	get_ray_cylinder_intersect_time(t_cylinder *cylinder, t_ray *ray)
 	vec_oc = vec_substract(ray->origin, cylinder->center);
 	a = vec_dot_product(ray->direction, ray->direction)
 		- pow(vec_dot_product(ray->direction, cylinder->axis_vector), 2);
-	b = 2 * (vec_dot_product(vec_oc, ray->direction)
-		- vec_dot_product(vec_oc, cylinder->axis_vector)
+	if (fabs(a) >= EPSILON)
+	{
+		b = 2 * (vec_dot_product(vec_oc, ray->direction)
+			- vec_dot_product(vec_oc, cylinder->axis_vector)
 			* vec_dot_product(ray->direction, cylinder->axis_vector));
-	c = vec_dot_product(vec_oc, vec_oc)
-		- pow(vec_dot_product(vec_oc, cylinder->axis_vector ), 2)
+		c = vec_dot_product(vec_oc, vec_oc)
+			- pow(vec_dot_product(vec_oc, cylinder->axis_vector ), 2)
 			- pow(cylinder->diameter / 2, 2);
-	time = get_time_from_discriminant(a, b,  b * b - 4 * a * c);
-	if (is_within_cylinder_height(ray, cylinder, time) == false)
-		time = TIME_VAL_NO_INTERSECTION;
+		time = get_time_from_discriminant(a, b,  b * b - 4 * a * c);
+		if (is_within_cylinder_height(ray, cylinder, time) == false)
+			time = TIME_VAL_NO_INTERSECTION;
+	}
 	get_ray_cylinder_caps_intersect_time(ray, cylinder, &time);
 	return (time);
 }
