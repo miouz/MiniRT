@@ -58,6 +58,8 @@ t_coordinates	vec_scala_divide(t_coordinates a, double b)
 {
 	t_coordinates	c;
 
+	if (fabs(b) < EPSILON)
+		return (error_msg(ERROR_DIVISION_ZERO));
 	c.x = a.x / b;
 	c.y = a.y / b;
 	c.z = a.z / b;
@@ -71,6 +73,8 @@ t_coordinates	vec_normalize(t_coordinates a)
 	double			magnitude;
 
 	magnitude = vec_magnitude(a);
+	if (fabs(magnitude) < EPSILON)
+		return (error_msg(ERROR_DIVISION_ZERO));
 	c.x = a.x / magnitude;
 	c.y = a.y / magnitude;
 	c.z = a.z / magnitude;
@@ -92,11 +96,11 @@ double	vec_magnitude(t_coordinates a)
 	return (sqrt(a.x * a.x + a.y * a.y + a.z * a.z));
 }
 
-int	vec_equals(t_coordinates a, t_coordinates b, double epsilon)
+int	vec_equals(t_coordinates a, t_coordinates b)
 {
-	return (fabs(a.x - b.x) < epsilon
-		&& fabs(a.y - b.y) < epsilon
-		&& fabs(a.z - b.z) < epsilon);
+	return (fabs(a.x - b.x) < EPSILON
+		&& fabs(a.y - b.y) < EPSILON
+		&& fabs(a.z - b.z) < EPSILON);
 }
 
 t_coordinates	vec_creat(double x, double y, double z, int type)
