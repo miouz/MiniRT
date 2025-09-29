@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minirt.h"
-#include "intersection.h"
-#include "../vector_operations/vector_operations.h"
+#include "../includes/minirt.h"
 
 /**
  * @brief check if intersection is in the cylinder's heigh range

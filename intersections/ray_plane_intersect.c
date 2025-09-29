@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minirt.h"
-#include "intersection.h"
+#include "../includes/minirt.h"
 
 bool	check_ray_is_in_plane(t_plane *plane, t_ray *ray, double d)
 {

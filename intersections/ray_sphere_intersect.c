@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minirt.h"
-// #include "intersection.h"
+#include "../includes/minirt.h"
 
 /**
  * @brief get ray-sphere intersect time value

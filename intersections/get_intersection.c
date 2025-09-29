@@ -10,11 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minirt.h"
-#include "intersection.h"
-#include "../vector_operations/vector_operations.h"
-#include <math.h>
-#include <stdlib.h>
+#include "../includes/minirt.h"
 
 int	ft_strlen(char *str)
 {
