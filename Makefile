@@ -69,14 +69,13 @@ test: fclean
 # ============================================================================ #
 
 clean:
-	# @$(MAKE) -C $(LIB_DIR) clean
 	@rm -rf $(OBJ_DIR)
-	@printf '🧹$(GREEN)It was a good moment with you my .o friends, but i cleaned you upm(｡≧ｴ≦｡)m$(RESET)🧹🧹'
+	@printf '🧹$(GREEN)Cleaning .o files... m(｡≧ｴ≦｡)m$(RESET)🧹🧹\n'
+
 fclean: clean
-	@$(MAKE) -C $(MINILIBX_DIR) fclean
 	@rm -f $(NAME)
 	# rm -f $(NAME_BONUS)
-	@printf '🧹🧹$(GREEN)everything has gone with fclean ლ(◉◞౪◟◉ )ლ$(RESET)🧹🧹'
+	@printf '🧹🧹$(GREEN)Nothing left...ლ(◉◞౪◟◉ )ლ$(RESET)🧹🧹\n'
 
 re: fclean $(NAME)
 
