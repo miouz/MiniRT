@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minirt.h"
-#include <math.h>
+#include "../includes/minirt.h"
 
 /**
  * @brief substract b from a (a - b)
