@@ -1,12 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   get_colors.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mzhou <mzhou@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/16 17:57:20 by anony             #+#    #+#             */
-/*   Updated: 2025/09/16 17:57:21 by anony            ###   ########.fr       */
+/*   Created: 2025/09/30 14:30:46 by mzhou             #+#    #+#             */
+/*   Updated: 2025/09/30 14:30:46 by mzhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef GET_COLORS_H
+# define GET_COLORS_H
+
+void	get_colors(struct s_data *data, int size_line);
+#endif // !GET_COLORS_H

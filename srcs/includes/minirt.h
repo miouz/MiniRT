@@ -13,6 +13,11 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 
+# include "../intersections/intersection.h" 
+# include "../vector_operations/vector_operations.h" 
+# include "../get_pixel_color/get_colors.h" 
+# include "../get_pixels_coordinates/get_pixels_coordinates.h" 
+
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -117,17 +122,18 @@ typedef struct s_ray
 typedef struct s_ambient_lighting
 {
 	double	intensity;
-	t_color	color;      // au cas où mais pas utile dans la mandatory part
+	t_color	color;
 }	t_ambient_lighting;
 
 typedef struct s_light
 {
 	double			intensity;
 	t_coordinates	source;
-	t_color			color;      // au cas où mais pas utile dans la mandatory part
+	t_color			color;
 }	t_light;
 
-// u et v vecteurs directeurs du plan contenant l ecran. u est orthogonal a l axe y vertical du repere orthonorme de la scene.
+// u et v vecteurs directeurs du plan contenant l ecran. 
+// u est orthogonal a l axe y vertical du repere orthonorme de la scene.
 typedef struct s_screen
 {
 	t_coordinates	center;
@@ -145,8 +151,5 @@ typedef struct s_data
 	t_intersect			intersects[HEIGHT * LENGHT];
 	char				*colors;
 }	t_data;
-
-# include "../intersections/intersection.h" 
-# include "../vector_operations/vector_operations.h" 
 
 #endif

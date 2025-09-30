@@ -1,12 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_ft_get_screen.c                               :+:      :+:    :+:   */
+/*   get_pixels_coordinates.h                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mzhou <mzhou@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/17 13:26:37 by anony             #+#    #+#             */
-/*   Updated: 2025/09/17 13:29:47 by anony            ###   ########.fr       */
+/*   Created: 2025/09/30 14:34:29 by mzhou             #+#    #+#             */
+/*   Updated: 2025/09/30 14:34:29 by mzhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef GET_PIXELS_COORDINATES_H
+# define GET_PIXELS_COORDINATES_H
+
+void			get_pixels_coordinates(struct s_data *data,
+					struct s_coordinates *pixels);
+struct s_screen	get_screen(struct s_camera cam);
+
+#endif // !GET_PIXELS_COORDINATES_H
