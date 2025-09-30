@@ -6,7 +6,7 @@
 /*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 14:20:58 by anony             #+#    #+#             */
-/*   Updated: 2025/09/23 15:35:38 by anony            ###   ########.fr       */
+/*   Updated: 2025/09/30 13:28:11 by anony            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,14 @@ t_color get_pixel_color(t_data *data, int x, int y)
     if (intensity > 1.0)
         intensity = 1.0;
     color.red = (int)(intensity * data->intersects[y * LENGHT + x].obj->color.red);
+    if (color.red > 255)
+        color.red = 255;
     color.green = (int)(intensity * data->intersects[y * LENGHT + x].obj->color.green);
+    if (color.green > 255)
+        color.green = 255;
     color.blue = (int)(intensity * data->intersects[y * LENGHT + x].obj->color.blue);
+    if (color.blue > 255)
+        color.blue = 255;
     return (color);
 }
 
