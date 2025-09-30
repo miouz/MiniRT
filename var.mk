@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    var.mk                                             :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mzhou <marvin@42.fr>                       +#+  +:+       +#+         #
+#    By: anony <anony@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/08 10:06:01 by mzhou             #+#    #+#              #
-#    Updated: 2025/04/21 16:01:54 by mzhou            ###   ########.fr        #
+#    Updated: 2025/09/30 17:36:46 by anony            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ CFLAGS += -I$(INCLUDE_DIR)
 CFLAGS += -MMD -MP
 DEBUG_FLAGS := -g
 # LIBMI_FLAGS = -L$(LIB_DIR) -lmi
+MINILIBX_DIR := ./minilibx-linux
 LFLAGS := -lmlx -L$(MINILIBX_DIR) -lXext -lX11 -lm
 
 
@@ -39,14 +40,15 @@ OBJ_DIR := objs
 INCLUDE_DIR := includes
 DEP_DIR := $(OBJ_DIR)/.deps
 TEST_DIR := tests
-MINILIBX_DIR := minilibx-linux
 
 #subdirectories
 VECTOR_DIR := $(SRC_DIR)/vector_operations
-INTER_DIR := $(SRC_DIR)/intersection
+INTER_DIR := $(SRC_DIR)/intersections
+COLORS_DIR := $(SRC_DIR)/get_colors
+PIXELS_DIR := $(SRC_DIR)/get_pixels_coordinates
+UTILS_DIR := $(SRC_DIR)/utils
 # RENDER_DIR := $(SRC_DIR)/rendering
 # SCREEN_DIR := $(SRC_DIR)/parsing
-# UTILS_DIR := $(SRC_DIR)/utils
 
 
 # ============================================================================ #
@@ -57,8 +59,7 @@ INTER_DIR := $(SRC_DIR)/intersection
 # MAIN_SRC := 
 
 #Vector operations
-VECTOR_SRC := $(VECTOR_DIR)/vector_operations.c \
-			  $(VECTOR_DIR)/vector_utils.c
+VECTOR_SRC := $(VECTOR_DIR)/vector_operations.c
 
 #Intersection calculations
 INTER_SRC := $(INTER_DIR)/get_intersection.c \
@@ -66,16 +67,38 @@ INTER_SRC := $(INTER_DIR)/get_intersection.c \
 			 $(INTER_DIR)/ray_plane_intersect.c \
 			 $(INTER_DIR)/ray_cylinder_intersect.c
 
+#Get colors
+COLORS_SRC := $(COLORS_DIR)/get_ortho_vector.c \
+			  $(COLORS_DIR)/get_colors.c
+
+#Get pixels coordinates
+PIXELS_SRC := $(PIXELS_DIR)/get_screen.c \
+			  $(PIXELS_DIR)/get_pixels_coordinates.c
+
+#Utils
+UTILS_SRC := $(UTILS_DIR)/utils.c
+
+#Main
+MAIN_SRC := $(UTILS_DIR)/main.c
+
 #srcs variables
 SRCS :=	$(VECTOR_SRC) \
 		$(INTER_SRC) \
+		$(COLORS_SRC) \
+		$(PIXELS_SRC) \
+		$(UTILS_SRC) \
+		$(MAIN_SRC)
 
 
 # Get all .c files recursively
 # SRCS := $(shell find $(SRC_DIR) -name '*.c')
 
+#Main obj
+MAIN_OBJ := $(OBJ_DIR)/main.o
+
 #Convert source files to object files
-OBJS := $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+OBJS := $(MAIN_OBJ) \
+		$(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 DEPS := $(OBJS:.o=.d)
 
 # ============================================================================ #

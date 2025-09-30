@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_intersection.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzhou <mzhou@student.42.fr>                +#+  +:+       +#+        */
+/*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 15:57:24 by mzhou             #+#    #+#             */
-/*   Updated: 2025/09/16 15:57:24 by mzhou            ###   ########.fr       */
+/*   Updated: 2025/09/30 17:05:36 by anony            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int	get_object_smallest_intersect_time(t_ray *ray, t_object *object,
 		new_time = get_ray_plane_intersect_time(&object->data.plane, ray);
 	else if (object->type == CYLINDER)
 		new_time = get_ray_cylinder_intersect_time(&object->data.cylinder, ray);
+	else
+		return (exit(1), EXIT_FAILURE);
 	if (new_time >= 0 && (*time == TIME_VAL_NO_INTERSECTION || new_time < *time))
 	{
 		*time = new_time;

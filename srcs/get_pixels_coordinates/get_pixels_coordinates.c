@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_pixels_coordinates.c                        :+:      :+:    :+:   */
+/*   get_pixels_coordinates.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 14:10:42 by anony             #+#    #+#             */
-/*   Updated: 2025/09/30 13:53:41 by anony            ###   ########.fr       */
+/*   Updated: 2025/09/30 17:19:29 by anony            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_coordinates	get_pixel(int id, t_screen screen, t_coordinates first_pixel)
 	int		v_offset;
 
     if (id == 1)
-        return (first_pixel);
+		return (first_pixel);
 	u_offset = (id - 1) % LENGHT;
 	v_offset = -1 * (id - 1) / LENGHT;
 	pixel.x = first_pixel.x + (double)u_offset * screen.u.x;
@@ -54,7 +54,6 @@ t_coordinates	get_pixel(int id, t_screen screen, t_coordinates first_pixel)
 void	get_pixels_coordinates(t_data *data, t_coordinates *pixels)
 {
     t_coordinates   first_pixel;
-	t_coordinates	pixel;
     t_screen    screen;
 	int		i;
     int nb_pixels;

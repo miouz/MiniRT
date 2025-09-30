@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_ray_object_intersect_time.c                    :+:      :+:    :+:   */
+/*   ray_sphere_intersect.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzhou <mzhou@student.42.fr>                +#+  +:+       +#+        */
+/*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 15:23:40 by mzhou             #+#    #+#             */
-/*   Updated: 2025/09/22 15:23:45 by mzhou            ###   ########.fr       */
+/*   Updated: 2025/09/30 17:28:36 by anony            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ double	get_ray_sphere_intersect_time(t_sphere *sphere, t_ray *ray)
 	vec_oc = vec_substract(ray->origin, sphere->center);
 	a = vec_dot_product(ray->direction, ray->direction);
 	if (a != 1)
-		error_msg("vector not normalized\n");
+		err_msg("vector not normalized\n");
 	b = 2 * vec_dot_product(ray->direction, vec_oc);
 	c = vec_dot_product(vec_oc, vec_oc) - pow(sphere->diameter / 2, 2);
 	discriminant = b * b - 4 * a * c;

@@ -6,11 +6,11 @@
 /*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 14:20:57 by anony             #+#    #+#             */
-/*   Updated: 2025/09/30 13:55:07 by anony            ###   ########.fr       */
+/*   Updated: 2025/09/30 16:43:07 by anony            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minirt.h"
+#include "../includes/minirt.h"
 
 
 t_coordinates   get_plane_ortho_vector(t_intersect intersect)
@@ -18,7 +18,7 @@ t_coordinates   get_plane_ortho_vector(t_intersect intersect)
     t_plane   plane;
     
     plane = intersect.obj->data.plane;
-    return (plane.orhto_vector);
+    return (plane.ortho_vector);
 }
 
 t_coordinates   get_sphere_ortho_vector(t_intersect intersect)
@@ -50,7 +50,7 @@ t_coordinates   get_cylinder_ortho_vector(t_intersect intersect)
     axial_component = (intersect.point.x - center.x) * axis_vector.x;
     axial_component += (intersect.point.y - center.y) * axis_vector.y;
     axial_component += (intersect.point.z - center.z) * axis_vector.z;
-    if (absolute_value(axial_component) - intersect.obj->data.cylinder.height / 2.0 < EPSILON)
+    if (fabs(axial_component) - intersect.obj->data.cylinder.height / 2.0 < EPSILON)
     {
         if (axial_component > 0)
             return (axis_vector);

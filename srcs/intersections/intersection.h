@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersection.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzhou <mzhou@student.42.fr>                +#+  +:+       +#+        */
+/*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 15:59:21 by mzhou             #+#    #+#             */
-/*   Updated: 2025/09/16 15:59:21 by mzhou            ###   ########.fr       */
+/*   Updated: 2025/09/30 17:13:21 by anony            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@
 # include <stdlib.h>
 # include <stdbool.h>
 
-void	convert_ray_time_to_point(struct s_ray *ray, double time,
-			struct s_coordinates *point);
+void	convert_ray_time_to_point(t_ray *ray, double time,
+			t_coordinates *point);
 double	get_time_from_discriminant(double a, double b, double discriminant);
-double	get_ray_plane_intersect_time(struct s_plane *plane, struct s_ray *ray);
-double	get_ray_cylinder_intersect_time(struct s_cylinder *cylinder,
-			struct s_ray *ray);
-double	get_ray_sphere_intersect_time(struct s_sphere *sphere,
-			struct s_ray *ray);
-int		get_hit_point(struct s_intersect *intersect_point,
-			struct s_ray *ray, struct s_object *scene);
+double	get_ray_plane_intersect_time(t_plane *plane, t_ray *ray);
+double	get_ray_cylinder_intersect_time(t_cylinder *cylinder,
+			t_ray *ray);
+double	get_ray_sphere_intersect_time(t_sphere *sphere,
+			t_ray *ray);
+int		get_hit_point(t_intersect *intersect_point,
+			t_ray *ray, t_object *scene);
 #endif

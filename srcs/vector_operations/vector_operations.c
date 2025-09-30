@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_operations.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mizhouis <mizhouis@gmail.com>              +#+  +:+       +#+        */
+/*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 19:55:29 by mizhouis          #+#    #+#             */
-/*   Updated: 2025/09/17 19:55:29 by mizhouis         ###   ########.fr       */
+/*   Updated: 2025/09/30 17:28:04 by anony            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,10 @@ t_coordinates	vec_scala_divide(t_coordinates a, double b)
 	t_coordinates	c;
 
 	if (fabs(b) < EPSILON)
-		return (error_msg(ERROR_DIVISION_ZERO));
+	{
+		err_msg(ERROR_DIVISION_ZERO);
+		exit(1);
+	}
 	c.x = a.x / b;
 	c.y = a.y / b;
 	c.z = a.z / b;
@@ -73,7 +76,10 @@ t_coordinates	vec_normalize(t_coordinates a)
 
 	magnitude = vec_magnitude(a);
 	if (fabs(magnitude) < EPSILON)
-		return (error_msg(ERROR_DIVISION_ZERO));
+	{
+		err_msg(ERROR_DIVISION_ZERO);
+		exit(1);
+	}
 	c.x = a.x / magnitude;
 	c.y = a.y / magnitude;
 	c.z = a.z / magnitude;

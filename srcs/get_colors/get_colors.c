@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_diffuse_light.c                                :+:      :+:    :+:   */
+/*   get_colors.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 14:20:58 by anony             #+#    #+#             */
-/*   Updated: 2025/09/30 13:55:30 by anony            ###   ########.fr       */
+/*   Updated: 2025/09/30 17:18:21 by anony            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ t_boolean   is_enlightened(t_data *data, t_ray *light_ray)
     while (obj)
     {
         if (obj->type == PLANE
-            && get_ray_plane_intersect(&obj->data.plane, light_ray) < distance - EPSILON)
+            && get_ray_plane_intersect_time(&obj->data.plane, light_ray) < distance - EPSILON)
             return (FALSE);
         if (obj->type == SPHERE
-            && get_ray_sphere_intersect(&obj->data.sphere, light_ray) < distance - EPSILON)
+            && get_ray_sphere_intersect_time(&obj->data.sphere, light_ray) < distance - EPSILON)
             return (FALSE);
         if (obj->type == CYLINDER
-            && get_ray_cylinder_intersect(&obj->data.cylinder, light_ray) < distance - EPSILON)
+            && get_ray_cylinder_intersect_time(&obj->data.cylinder, light_ray) < distance - EPSILON)
             return (FALSE);
         obj++;
     }
@@ -37,8 +37,6 @@ t_boolean   is_enlightened(t_data *data, t_ray *light_ray)
 
 void    fill_light_ray(t_data *data, int ind, t_ray *light_ray)
 {
-    double  vec_magn;
-
     light_ray->direction.x = data->intersects[ind].point.x - data->light.source.x;
     light_ray->direction.y = data->intersects[ind].point.y - data->light.source.y;
     light_ray->direction.z = data->intersects[ind].point.z - data->light.source.z;
@@ -56,7 +54,7 @@ t_color get_pixel_color(t_data *data, int x, int y)
     ortho_vector = get_ortho_vector(data->intersects[y * LENGHT + x]);
     if (is_enlightened(data, &light_ray))
         intensity = data->ambient_lighting.intensity
-            - vec_dot_product(ortho_vector, light_ray) * data->light.intensity
+            - vec_dot_product(ortho_vector, light_ray.direction) * data->light.intensity
             / vec_magnitude(light_ray.direction);
     else
         intensity = data->ambient_lighting.intensity;

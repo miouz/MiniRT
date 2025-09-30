@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_pixels_coordinates.h                           :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/30 14:34:29 by mzhou             #+#    #+#             */
-/*   Updated: 2025/09/30 17:12:23 by anony            ###   ########.fr       */
+/*   Created: 2025/09/30 16:47:39 by anony             #+#    #+#             */
+/*   Updated: 2025/09/30 17:27:49 by anony            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_PIXELS_COORDINATES_H
-# define GET_PIXELS_COORDINATES_H
+#ifndef UTILS_H
+# define UTILS_H
 
-void			get_pixels_coordinates(t_data *data,
-					t_coordinates *pixels);
-t_screen	get_screen(t_camera cam);
+void  err_msg(char *str);
 
-#endif // !GET_PIXELS_COORDINATES_H
+#endif

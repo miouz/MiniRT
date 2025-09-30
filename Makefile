@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mzhou <marvin@42.fr>                       +#+  +:+       +#+         #
+#    By: anony <anony@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/08 17:54:02 by mzhou             #+#    #+#              #
-#    Updated: 2025/04/21 15:55:13 by mzhou            ###   ########.fr        #
+#    Updated: 2025/09/30 17:26:43 by anony            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 #Build MLX library
 $(MINILIBX):
 	@echo "$(CYAN)Building this ancient minilibx... p(-,, - )q$(RESET)"
-	@make -C $((MINILIBX_DIR)
+	@make -C $(MINILIBX_DIR)
 
 #Include dependency files
 -include $(DEPS)
