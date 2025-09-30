@@ -6,7 +6,7 @@
 /*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 16:37:40 by anony             #+#    #+#             */
-/*   Updated: 2025/09/23 13:58:08 by anony            ###   ########.fr       */
+/*   Updated: 2025/09/30 13:52:36 by anony            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,10 +178,10 @@ double  absolute_value(double   nb);
 
 // ft_get_screen.c
 
-t_screen	ft_get_screen(t_camera cam);
+t_screen	get_screen(t_camera cam);
 
 // ft_get_ortho_vector.c
 
-t_coordinates   ft_get_ortho_vector(t_intersect intersect);
+t_coordinates   get_ortho_vector(t_intersect intersect);
 
 #endif

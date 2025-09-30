@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_ortho_vector.c                              :+:      :+:    :+:   */
+/*   get_ortho_vector.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 14:20:57 by anony             #+#    #+#             */
-/*   Updated: 2025/09/22 16:06:18 by anony            ###   ########.fr       */
+/*   Updated: 2025/09/30 13:55:07 by anony            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minirt.h"
 
 
-t_coordinates   ft_get_plane_ortho_vector(t_intersect intersect)
+t_coordinates   get_plane_ortho_vector(t_intersect intersect)
 {
     t_plane   plane;
     
@@ -21,7 +21,7 @@ t_coordinates   ft_get_plane_ortho_vector(t_intersect intersect)
     return (plane.orhto_vector);
 }
 
-t_coordinates   ft_get_sphere_ortho_vector(t_intersect intersect)
+t_coordinates   get_sphere_ortho_vector(t_intersect intersect)
 {
     t_sphere   sphere;
     t_coordinates   ortho_vector;
@@ -36,7 +36,7 @@ t_coordinates   ft_get_sphere_ortho_vector(t_intersect intersect)
     return (ortho_vector);
 }
 
-t_coordinates   ft_get_cylinder_ortho_vector(t_intersect intersect)
+t_coordinates   get_cylinder_ortho_vector(t_intersect intersect)
 {
     t_coordinates   ortho_vector;
     double  axial_component;
@@ -67,15 +67,15 @@ t_coordinates   ft_get_cylinder_ortho_vector(t_intersect intersect)
 
 // ne l appeler que si intersect.obj n est pas NULL
 
-t_coordinates   ft_get_ortho_vector(t_intersect intersect)
+t_coordinates   get_ortho_vector(t_intersect intersect)
 {
     t_coordinates   ortho_vector;
 
     if (intersect.obj->type == PLANE)
-        ortho_vector = ft_get_plane_ortho_vector(intersect);
+        ortho_vector = get_plane_ortho_vector(intersect);
     if (intersect.obj->type == SPHERE)
-        ortho_vector = ft_get_sphere_ortho_vector(intersect);
+        ortho_vector = get_sphere_ortho_vector(intersect);
     if (intersect.obj->type == CYLINDER)
-        ortho_vector = ft_get_cylinder_ortho_vector(intersect);
+        ortho_vector = get_cylinder_ortho_vector(intersect);
     return (ortho_vector);
 }

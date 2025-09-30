@@ -6,13 +6,13 @@
 /*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:54:16 by anony             #+#    #+#             */
-/*   Updated: 2025/09/19 13:23:29 by anony            ###   ########.fr       */
+/*   Updated: 2025/09/30 13:54:07 by anony            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minirt.h"
 
-t_coordinates	ft_get_screen_center(t_camera cam)
+t_coordinates	get_screen_center(t_camera cam)
 {
 	t_coordinates	screen_center;
 	double		distance;
@@ -25,7 +25,7 @@ t_coordinates	ft_get_screen_center(t_camera cam)
 	return (screen_center);
 }
 
-t_coordinates	ft_get_u_screen_direction_vector(t_coordinates cam_dir)
+t_coordinates	get_u_screen_direction_vector(t_coordinates cam_dir)
 {
 	t_coordinates	u;
 
@@ -45,7 +45,7 @@ t_coordinates	ft_get_u_screen_direction_vector(t_coordinates cam_dir)
 	return (u);
 }
 
-t_coordinates	ft_get_v_screen_direction_vector(t_coordinates cam_dir, t_coordinates u)
+t_coordinates	get_v_screen_direction_vector(t_coordinates cam_dir, t_coordinates u)
 {
 	t_coordinates	v;
 
@@ -56,12 +56,12 @@ t_coordinates	ft_get_v_screen_direction_vector(t_coordinates cam_dir, t_coordina
 	return (v);
 }
 
-t_screen	ft_get_screen(t_camera cam)
+t_screen	get_screen(t_camera cam)
 {
 	t_screen	screen;
 
-	screen.center = ft_get_screen_center(cam);
-	screen.u = ft_get_u_screen_direction_vector(cam.direction);
-	screen.v = ft_get_v_screen_direction_vector(cam.direction, screen.u);
+	screen.center = get_screen_center(cam);
+	screen.u = get_u_screen_direction_vector(cam.direction);
+	screen.v = get_v_screen_direction_vector(cam.direction, screen.u);
 	return (screen);
 }
