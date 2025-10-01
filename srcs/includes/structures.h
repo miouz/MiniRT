@@ -6,7 +6,7 @@
 /*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 16:18:52 by anony             #+#    #+#             */
-/*   Updated: 2025/10/01 17:44:25 by anony            ###   ########.fr       */
+/*   Updated: 2025/10/01 19:30:42 by anony            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-# define HEIGHT 400
+# define HEIGHT 800
 # define LENGHT 800
 # define EPSILON 0.00001
+#define M_PI 3.14159265358979323846
 
 /*==================================MINILIBX_DATA===========================*/
 typedef struct s_minilibx_data

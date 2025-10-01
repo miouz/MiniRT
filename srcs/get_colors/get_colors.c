@@ -6,7 +6,7 @@
 /*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 14:20:58 by anony             #+#    #+#             */
-/*   Updated: 2025/10/01 17:24:45 by anony            ###   ########.fr       */
+/*   Updated: 2025/10/01 19:58:06 by anony            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,25 @@
 
 t_boolean   is_enlightened(t_data *data, t_ray *light_ray)
 {
-    t_object    *obj;
+    int    obj;
+    t_object *object;
     double  distance;
     
-    obj = data->objects;
+    obj = 0;
     distance = vec_magnitude(light_ray->direction);
-    while (obj)
-    {
-        if (obj->type == PLANE
-            && get_ray_plane_intersect_time(&obj->data.plane, light_ray) < distance - EPSILON)
+    object = data->objects;
+    while (obj < data->nb_objects)
+    {  
+        if (object->type == PLANE
+            && get_ray_plane_intersect_time(&object->data.plane, light_ray) < 1.0 - EPSILON)
             return (FALSE);
-        if (obj->type == SPHERE
-            && get_ray_sphere_intersect_time(&obj->data.sphere, light_ray) < distance - EPSILON)
+        if (object->type == SPHERE
+            && get_ray_sphere_intersect_time(&object->data.sphere, light_ray) < 1.0 - EPSILON)
             return (FALSE);
-        if (obj->type == CYLINDER
-            && get_ray_cylinder_intersect_time(&obj->data.cylinder, light_ray) < distance - EPSILON)
+        if (object->type == CYLINDER
+            && get_ray_cylinder_intersect_time(&object->data.cylinder, light_ray) < 1.0 - EPSILON)
             return (FALSE);
+        object++;
         obj++;
     }
     return (TRUE);
@@ -53,9 +56,9 @@ t_color get_pixel_color(t_data *data, int x, int y)
     fill_light_ray(data, y * LENGHT + x, &light_ray);
     if (!data->intersects[y * LENGHT + x].obj)
     {
-        color.blue = data->ambient_lighting.color.blue * data->ambient_lighting.intensity;
-        color.green = data->ambient_lighting.color.green * data->ambient_lighting.intensity;
-        color.red = data->ambient_lighting.color.red * data->ambient_lighting.intensity;
+        color.blue = (int)(data->ambient_lighting.color.blue * data->ambient_lighting.intensity);
+        color.green = (int)(data->ambient_lighting.color.green * data->ambient_lighting.intensity);
+        color.red = (int)(data->ambient_lighting.color.red * data->ambient_lighting.intensity);
         return (color);
     }
     ortho_vector = get_ortho_vector(data->intersects[y * LENGHT + x]);
@@ -86,20 +89,21 @@ void    get_colors(t_data *data, int size_line)
     int offset;
     t_color color;
 
-    x = 0;
     y = 0;
-    while (x < LENGHT)
+    while (y < HEIGHT)
     {
-        while (y < HEIGHT)
+        x = 0;
+        while (x < LENGHT)
         {
             offset = y * size_line + x * 4;
             color = get_pixel_color(data, x, y);
-            data->colors[offset] = (char)color.red; 
-            data->colors[offset + 1] = (char)color.green;
-            data->colors[offset + 2] = (char)color.blue;
-            y++;
+            // printf("Pixel %d : red - %d - green - %d - blue : - %d -\n", offset, color.red, color.green, color.blue);
+            data->minilibx.colors[offset] = (char)color.red; 
+            data->minilibx.colors[offset + 1] = (char)color.green;
+            data->minilibx.colors[offset + 2] = (char)color.blue;
+            x++;
         }
-        x++;
+        y++;
     }
 }
 

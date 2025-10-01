@@ -6,7 +6,7 @@
 /*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 13:09:25 by anony             #+#    #+#             */
-/*   Updated: 2025/10/01 17:40:41 by anony            ###   ########.fr       */
+/*   Updated: 2025/10/01 17:50:13 by anony            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,25 @@ int	close_minilibx(t_minilibx_data *data)
 	exit(0);
 }
 
-void	initialize_minilibx(t_data *data)
+void	initialize_minilibx(t_minilibx_data *minilibx)
 {
-	data->minilibx->mlx_p = mlx_init();
-	if (data->minilibx->mlx_p == NULL)
+	minilibx->mlx_p = mlx_init();
+	if (minilibx->mlx_p == NULL)
 		return (exit(1));
-	data->minilibx->win_p = mlx_new_window(data->minilibx->mlx_p, LENGHT, HEIGHT, "OMG la classe");
-	if (data->minilibx->win_p == NULL)
+	minilibx->win_p = mlx_new_window(minilibx->mlx_p, LENGHT, HEIGHT, "OMG la classe");
+	if (minilibx->win_p == NULL)
 	{
-		mlx_destroy_display(data->minilibx->mlx_p);
-		return (free(data->minilibx->mlx_p), exit(1));
+		mlx_destroy_display(minilibx->mlx_p);
+		return (free(minilibx->mlx_p), exit(1));
 	}
-	data->minilibx->img_p = mlx_new_image(data->minilibx->mlx_p, LENGHT, HEIGHT);
-	if (data->minilibx->img_p == NULL)
+	minilibx->img_p = mlx_new_image(minilibx->mlx_p, LENGHT, HEIGHT);
+	if (minilibx->img_p == NULL)
 	{
-		mlx_destroy_window(data->minilibx->mlx_p, data->minilibx->win_p);
-		mlx_destroy_display(data->minilibx->mlx_p);
-		return (free(data->minilibx->mlx_p), exit(1));
+		mlx_destroy_window(minilibx->mlx_p, minilibx->win_p);
+		mlx_destroy_display(minilibx->mlx_p);
+		return (free(minilibx->mlx_p), exit(1));
 	}
-	data->colors = mlx_get_data_addr(data->minilibx->img_p, &data->minilibx->bpp, &data->minilibx->line, &data->minilibx->end);
-	if (data->colors == NULL)
-		close_minilibx(data->minilibx);
+	minilibx->colors = mlx_get_data_addr(minilibx->img_p, &minilibx->bpp, &minilibx->line, &minilibx->end);
+	if (minilibx->colors == NULL)
+		close_minilibx(minilibx);
 }
