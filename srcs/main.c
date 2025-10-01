@@ -6,16 +6,17 @@
 /*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 16:38:44 by anony             #+#    #+#             */
-/*   Updated: 2025/09/30 18:02:52 by anony            ###   ########.fr       */
+/*   Updated: 2025/10/01 17:44:56 by anony            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minirt.h"
 
-void setup_data(t_data *data)
+void setup_data(t_data *data, char **argv)
 {
     t_object *sphere;
 
+    (void) argv;
     sphere = malloc(sizeof(t_object));
     sphere->color.blue = 0;
     sphere->color.green = 0;
@@ -49,23 +50,31 @@ void setup_data(t_data *data)
     data->light.source.y = 2;
     data->light.source.z = -2;
     data->objects = sphere;
+    data->nb_objects = 1;
 }
 
 int main (int argc, char **argv)
 {
     t_data data;
-    t_coordinates pixels[HEIGHT * LENGHT];
-    t_intersect intersects[HEIGHT * LENGHT];
+    t_coordinates *pixels;
+    t_intersect *intersects;
+    t_minilibx_data minilibx;
 
-    setup_data(&data);
+    pixels = malloc((HEIGHT * LENGHT) * sizeof(t_coordinates));
+    intersects = malloc((HEIGHT * LENGHT) * sizeof(t_intersect));
+    (void) argc;
+    setup_data(&data, argv);
     data.pixels = pixels;
     data.intersects = intersects;
+    data.minilibx = minilibx;
+    initialize_minilibx(&minilibx);
+    get_pixels_coordinates(&data);
+    get_intersects(&data);
+    printf("%d\n", minilibx.line);
+    get_colors(&data, minilibx.line);
+	mlx_put_image_to_window(minilibx.mlx_p, minilibx.win_p, minilibx.img_p, 0, 0);
+
     
-    get_pixels_coordinates(&data, pixels);
-    get_intersect(&data, pixels, intersects);
-    get_pixels_colors(&data, intersects, colors);
-    convert_colors_for_minilibX(&data, colors);
-    blablaminilibX(); // afficher image etc
-    clean(data);
+    // clean(data);
     return (0);
 }

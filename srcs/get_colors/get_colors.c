@@ -6,7 +6,7 @@
 /*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 14:20:58 by anony             #+#    #+#             */
-/*   Updated: 2025/09/30 17:18:21 by anony            ###   ########.fr       */
+/*   Updated: 2025/10/01 17:24:45 by anony            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,13 @@ t_color get_pixel_color(t_data *data, int x, int y)
     double  intensity;
 
     fill_light_ray(data, y * LENGHT + x, &light_ray);
+    if (!data->intersects[y * LENGHT + x].obj)
+    {
+        color.blue = data->ambient_lighting.color.blue * data->ambient_lighting.intensity;
+        color.green = data->ambient_lighting.color.green * data->ambient_lighting.intensity;
+        color.red = data->ambient_lighting.color.red * data->ambient_lighting.intensity;
+        return (color);
+    }
     ortho_vector = get_ortho_vector(data->intersects[y * LENGHT + x]);
     if (is_enlightened(data, &light_ray))
         intensity = data->ambient_lighting.intensity

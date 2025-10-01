@@ -6,7 +6,7 @@
 /*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 14:10:42 by anony             #+#    #+#             */
-/*   Updated: 2025/09/30 17:19:29 by anony            ###   ########.fr       */
+/*   Updated: 2025/10/01 13:25:06 by anony            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_coordinates	get_pixel(int id, t_screen screen, t_coordinates first_pixel)
 	return (pixel);
 }
 
-void	get_pixels_coordinates(t_data *data, t_coordinates *pixels)
+void	get_pixels_coordinates(t_data *data)
 {
     t_coordinates   first_pixel;
     t_screen    screen;
@@ -64,7 +64,7 @@ void	get_pixels_coordinates(t_data *data, t_coordinates *pixels)
     nb_pixels = HEIGHT * LENGHT;
     while (i <= nb_pixels)
     {
-        pixels[i - 1] = get_pixel(i, screen, first_pixel);
+        data->pixels[i - 1] = get_pixel(i, screen, first_pixel);
         i++;
     }
 	return ;

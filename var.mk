@@ -6,7 +6,7 @@
 #    By: anony <anony@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/08 10:06:01 by mzhou             #+#    #+#              #
-#    Updated: 2025/09/30 17:36:46 by anony            ###   ########.fr        #
+#    Updated: 2025/10/01 16:17:44 by anony            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,10 +76,11 @@ PIXELS_SRC := $(PIXELS_DIR)/get_screen.c \
 			  $(PIXELS_DIR)/get_pixels_coordinates.c
 
 #Utils
-UTILS_SRC := $(UTILS_DIR)/utils.c
+UTILS_SRC := $(UTILS_DIR)/utils.c \
+			 $(UTILS_DIR)/minilibx.c
 
 #Main
-MAIN_SRC := $(UTILS_DIR)/main.c
+MAIN_SRC := $(SRC_DIR)/main.c
 
 #srcs variables
 SRCS :=	$(VECTOR_SRC) \
@@ -93,12 +94,8 @@ SRCS :=	$(VECTOR_SRC) \
 # Get all .c files recursively
 # SRCS := $(shell find $(SRC_DIR) -name '*.c')
 
-#Main obj
-MAIN_OBJ := $(OBJ_DIR)/main.o
-
 #Convert source files to object files
-OBJS := $(MAIN_OBJ) \
-		$(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+OBJS := $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 DEPS := $(OBJS:.o=.d)
 
 # ============================================================================ #

@@ -6,7 +6,7 @@
 /*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 19:55:29 by mizhouis          #+#    #+#             */
-/*   Updated: 2025/09/30 17:28:04 by anony            ###   ########.fr       */
+/*   Updated: 2025/10/01 14:08:27 by anony            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_coordinates	vec_scala_divide(t_coordinates a, double b)
 
 	if (fabs(b) < EPSILON)
 	{
-		err_msg(ERROR_DIVISION_ZERO);
+		error_msg(ERROR_DIVISION_ZERO);
 		exit(1);
 	}
 	c.x = a.x / b;
@@ -77,7 +77,7 @@ t_coordinates	vec_normalize(t_coordinates a)
 	magnitude = vec_magnitude(a);
 	if (fabs(magnitude) < EPSILON)
 	{
-		err_msg(ERROR_DIVISION_ZERO);
+		error_msg(ERROR_DIVISION_ZERO);
 		exit(1);
 	}
 	c.x = a.x / magnitude;

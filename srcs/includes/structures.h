@@ -6,7 +6,7 @@
 /*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 16:18:52 by anony             #+#    #+#             */
-/*   Updated: 2025/09/30 18:02:02 by anony            ###   ########.fr       */
+/*   Updated: 2025/10/01 17:44:25 by anony            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_minilibx_data
 	void	*mlx_p;
 	void	*win_p;
 	void	*img_p;
-	char	*dat;
+	char	*colors;
 	int		bpp;
 	int		line;
 	int		end;
@@ -147,9 +147,10 @@ typedef struct s_data
 	t_ambient_lighting	ambient_lighting;
 	t_light				light;
 	t_object			*objects;
+	int					nb_objects;
 	t_coordinates		*pixels;
 	t_intersect			*intersects;
-	char				*colors;
+	t_minilibx_data		minilibx;
 }	t_data;
 
 #endif

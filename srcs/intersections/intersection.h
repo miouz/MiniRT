@@ -6,7 +6,7 @@
 /*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 15:59:21 by mzhou             #+#    #+#             */
-/*   Updated: 2025/09/30 17:13:21 by anony            ###   ########.fr       */
+/*   Updated: 2025/10/01 14:01:13 by anony            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ double	get_ray_cylinder_intersect_time(t_cylinder *cylinder,
 double	get_ray_sphere_intersect_time(t_sphere *sphere,
 			t_ray *ray);
 int		get_hit_point(t_intersect *intersect_point,
-			t_ray *ray, t_object *scene);
+			t_ray *ray, t_object *scene, int nb_objects);
+void get_intersects(t_data *data);
 #endif
