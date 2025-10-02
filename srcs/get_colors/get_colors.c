@@ -6,7 +6,7 @@
 /*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 14:20:58 by anony             #+#    #+#             */
-/*   Updated: 2025/10/01 19:58:06 by anony            ###   ########.fr       */
+/*   Updated: 2025/10/02 17:56:35 by anony            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,31 @@
 
 t_boolean   is_enlightened(t_data *data, t_ray *light_ray)
 {
-    int    obj;
-    t_object *object;
-    double  distance;
+    int    i;
+    double time;
     
-    obj = 0;
-    distance = vec_magnitude(light_ray->direction);
-    object = data->objects;
-    while (obj < data->nb_objects)
+    i = 0;
+    while (i < data->nb_objects)
     {  
-        if (object->type == PLANE
-            && get_ray_plane_intersect_time(&object->data.plane, light_ray) < 1.0 - EPSILON)
-            return (FALSE);
-        if (object->type == SPHERE
-            && get_ray_sphere_intersect_time(&object->data.sphere, light_ray) < 1.0 - EPSILON)
-            return (FALSE);
-        if (object->type == CYLINDER
-            && get_ray_cylinder_intersect_time(&object->data.cylinder, light_ray) < 1.0 - EPSILON)
-            return (FALSE);
-        object++;
-        obj++;
+        if (data->objects[i].type == PLANE)
+        {
+            time = get_ray_plane_intersect_time(&data->objects[i].data.plane, light_ray);
+            if (time >= 0.0 && time < 1.0 - EPSILON)
+                return (FALSE);
+        }
+        if (data->objects[i].type == SPHERE)
+        {
+            time = get_ray_sphere_intersect_time(&data->objects[i].data.sphere, light_ray);
+            if (time >= 0.0 && time < 1.0 - EPSILON)
+                return (FALSE);
+        }
+        if (data->objects[i].type == CYLINDER)
+        {
+            time = get_ray_cylinder_intersect_time(&data->objects[i].data.cylinder, light_ray);
+            if (time >= 0.0 && time < 1.0 - EPSILON)
+                return (FALSE);
+        }
+        i++;
     }
     return (TRUE);
 }
@@ -53,7 +58,6 @@ t_color get_pixel_color(t_data *data, int x, int y)
     t_color color;
     double  intensity;
 
-    fill_light_ray(data, y * LENGHT + x, &light_ray);
     if (!data->intersects[y * LENGHT + x].obj)
     {
         color.blue = (int)(data->ambient_lighting.color.blue * data->ambient_lighting.intensity);
@@ -61,11 +65,14 @@ t_color get_pixel_color(t_data *data, int x, int y)
         color.red = (int)(data->ambient_lighting.color.red * data->ambient_lighting.intensity);
         return (color);
     }
-    ortho_vector = get_ortho_vector(data->intersects[y * LENGHT + x]);
+    fill_light_ray(data, y * LENGHT + x, &light_ray);
     if (is_enlightened(data, &light_ray))
+    {
+        ortho_vector = get_ortho_vector(data->intersects[y * LENGHT + x]);
         intensity = data->ambient_lighting.intensity
             - vec_dot_product(ortho_vector, light_ray.direction) * data->light.intensity
             / vec_magnitude(light_ray.direction);
+    }
     else
         intensity = data->ambient_lighting.intensity;
     if (intensity > 1.0)
@@ -98,9 +105,9 @@ void    get_colors(t_data *data, int size_line)
             offset = y * size_line + x * 4;
             color = get_pixel_color(data, x, y);
             // printf("Pixel %d : red - %d - green - %d - blue : - %d -\n", offset, color.red, color.green, color.blue);
-            data->minilibx.colors[offset] = (char)color.red; 
+            data->minilibx.colors[offset] = (char)color.blue; 
             data->minilibx.colors[offset + 1] = (char)color.green;
-            data->minilibx.colors[offset + 2] = (char)color.blue;
+            data->minilibx.colors[offset + 2] = (char)color.red;
             x++;
         }
         y++;

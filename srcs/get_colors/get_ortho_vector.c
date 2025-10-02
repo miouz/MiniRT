@@ -6,7 +6,7 @@
 /*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 14:20:57 by anony             #+#    #+#             */
-/*   Updated: 2025/10/01 17:21:34 by anony            ###   ########.fr       */
+/*   Updated: 2025/10/02 13:50:35 by anony            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,21 @@ t_coordinates   get_cylinder_ortho_vector(t_intersect intersect)
     center = intersect.obj->data.cylinder.center;
     axis_vector = intersect.obj->data.cylinder.axis_vector;
     radius = intersect.obj->data.cylinder.diameter / 2.0;
-    axial_component = (intersect.point.x - center.x) * axis_vector.x;
-    axial_component += (intersect.point.y - center.y) * axis_vector.y;
-    axial_component += (intersect.point.z - center.z) * axis_vector.z;
-    if (fabs(axial_component) - intersect.obj->data.cylinder.height / 2.0 < EPSILON)
+    axial_component = (intersect.point.x - center.x) * axis_vector.x
+        + (intersect.point.y - center.y) * axis_vector.y
+        + (intersect.point.z - center.z) * axis_vector.z;
+    if (fabs(axial_component) - intersect.obj->data.cylinder.height / 2.0 < -1.0 * EPSILON)
     {
-        if (axial_component > 0)
-            return (axis_vector);
-        ortho_vector.x = -1.0 * axis_vector.x;
-        ortho_vector.y = -1.0 * axis_vector.y;
-        ortho_vector.z = -1.0 * axis_vector.z;
+        ortho_vector.x = (intersect.point.x - (center.x + axial_component * axis_vector.x)) / radius;
+        ortho_vector.y = (intersect.point.y - (center.y + axial_component * axis_vector.y)) / radius;
+        ortho_vector.z = (intersect.point.z - (center.z + axial_component * axis_vector.z)) / radius;
         return (ortho_vector);
     }
-    ortho_vector.x = (intersect.point.x - center.x + axial_component * axis_vector.x) / radius;
-    ortho_vector.y = (intersect.point.y - center.y + axial_component * axis_vector.y) / radius;
-    ortho_vector.z = (intersect.point.z - center.z + axial_component * axis_vector.z) / radius;
+    if (axial_component > 0)
+        return (axis_vector);
+    ortho_vector.x = -1.0 * axis_vector.x;
+    ortho_vector.y = -1.0 * axis_vector.y;
+    ortho_vector.z = -1.0 * axis_vector.z;
     return (ortho_vector);
 }
 
