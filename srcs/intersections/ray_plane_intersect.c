@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_plane_intersect.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzhou <mzhou@student.42.fr>                +#+  +:+       +#+        */
+/*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 11:56:05 by mzhou             #+#    #+#             */
-/*   Updated: 2025/09/24 11:57:46 by mzhou            ###   ########.fr       */
+/*   Updated: 2025/10/02 20:47:40 by anony            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ bool	check_ray_is_in_plane(t_plane *plane, t_ray *ray, double d)
 	if (vec_dot_product(plane->ortho_vector, ray->origin) + d == 0)
 		return (true);
 	else
-	 	return (false);
+		return (false);
 }
 
 /**
@@ -35,16 +35,16 @@ bool	check_ray_is_in_plane(t_plane *plane, t_ray *ray, double d)
  * @param ray address of structure ray
  * @return time_value in double
  */
-double	get_ray_plane_intersect_time(t_plane *plane, t_ray *ray)
+double	get_ray_plane_inter_time(t_plane *plane, t_ray *ray)
 {
 	double	denominator;
 	double	d;
 	double	t;
 
 	denominator = vec_dot_product(ray->direction, plane->ortho_vector);
-	d = - vec_dot_product(plane->ortho_vector, plane->point);
-	//if its parallele and ray is int the plane
-	if (fabs(denominator) < EPSILON && check_ray_is_in_plane(plane, ray, d) == true)
+	d = -vec_dot_product(plane->ortho_vector, plane->point);
+	if (fabs(denominator) < EPSILON
+		&& check_ray_is_in_plane(plane, ray, d) == true)
 		return (t = 0);
 	t = -(vec_dot_product(plane->ortho_vector, ray->origin) + d) / denominator;
 	if (t >= 0)

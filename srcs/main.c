@@ -6,7 +6,7 @@
 /*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 16:38:44 by anony             #+#    #+#             */
-/*   Updated: 2025/10/02 18:32:39 by anony            ###   ########.fr       */
+/*   Updated: 2025/10/02 19:11:42 by anony            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,8 @@ int main (int argc, char **argv)
     get_pixels_coordinates(&data);
     get_intersects(&data);
     get_colors(&data, data.minilibx.line);
-	mlx_put_image_to_window(data.minilibx.mlx_p, data.minilibx.win_p, data.minilibx.img_p, 0, 0);
+	mlx_put_image_to_window(data.minilibx.mlx_p, data.minilibx.win_p,
+        data.minilibx.img_p, 0, 0);
     mlx_loop(data.minilibx.mlx_p);
     
     // clean(data);

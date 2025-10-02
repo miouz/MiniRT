@@ -6,7 +6,7 @@
 #    By: anony <anony@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/08 10:06:01 by mzhou             #+#    #+#              #
-#    Updated: 2025/10/01 16:17:44 by anony            ###   ########.fr        #
+#    Updated: 2025/10/02 20:58:18 by anony            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,8 @@ UTILS_DIR := $(SRC_DIR)/utils
 # MAIN_SRC := 
 
 #Vector operations
-VECTOR_SRC := $(VECTOR_DIR)/vector_operations.c
+VECTOR_SRC := $(VECTOR_DIR)/vector_operations.c \
+			  $(VECTOR_DIR)/vector_operations2.c
 
 #Intersection calculations
 INTER_SRC := $(INTER_DIR)/get_intersection.c \

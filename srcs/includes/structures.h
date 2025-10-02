@@ -6,7 +6,7 @@
 /*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 16:18:52 by anony             #+#    #+#             */
-/*   Updated: 2025/10/01 19:30:42 by anony            ###   ########.fr       */
+/*   Updated: 2025/10/02 20:38:23 by anony            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define HEIGHT 800
 # define LENGHT 800
 # define EPSILON 0.00001
-#define M_PI 3.14159265358979323846
+# define M_PI 3.14159265358979323846
 
 /*==================================MINILIBX_DATA===========================*/
 typedef struct s_minilibx_data
@@ -96,7 +96,7 @@ typedef struct s_object
 {
 	t_type			type;
 	t_object_union	data;
-    t_color         color;
+	t_color			color;
 }	t_object;
 
 typedef struct s_intersect
