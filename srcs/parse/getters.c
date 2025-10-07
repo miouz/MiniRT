@@ -1,4 +1,6 @@
 // #include "../includes/minirt.h"
+#include "parse.h"
+# define EPSILON 0.000001
 
 int	get_next_double_in_range(char **line, double *num, double min, double max)
 {
@@ -20,3 +22,8 @@ int	get_next_double_in_range(char **line, double *num, double min, double max)
 	}
 	return (EXIT_FAILURE);
 }
+
+// int	get_next_color(char *line, t_color *color)
+// {
+// 	return (EXIT_FAILURE);
+// }
