@@ -2,6 +2,18 @@
 #include "parse.h"
 # define EPSILON 0.000001
 
+/**
+ * @brief the function move line points to and 
+ * get next double value in min and max range 
+ *
+ * @param line address of the initial line pointer
+ * @param num address of the int to write the parsed value
+ * @param min min value in range
+ * @param max max value in range
+ * @return EXIT_SUCCESS or EXIT_FAILURE if format error
+ * @warning the function changes the address pointed by line
+ * to the character after the parsed double value in string
+ */
 int	get_next_double_in_range(char **line, double *num, double min, double max)
 {
 	if (**line == '\0' || is_white_space(**line) == false)
