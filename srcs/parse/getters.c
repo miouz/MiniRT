@@ -40,7 +40,35 @@ int	get_next_double_in_range(char **line, double *num, double min, double max)
 	return (EXIT_FAILURE);
 }
 
-// int	get_next_color(char *line, t_color *color)
+int	get_next_color(char **line, t_color *color)
+{
+	char	*begin;
+	int		result[3];
+	int		index;
+
+	index = 0;
+	if (check_and_jump_spaces(line) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	if (is_good_color_format(*line) == true)
+	{
+		begin = *line;
+		while ((*line)++ && index <= 2)
+		{
+			if (**line == ',' || **line == '\0'
+				|| is_white_space(**line) == true)
+			{
+				swap_nul_and_atoi(&result[index++], begin, *line);
+				begin = *line + 1;
+			}
+		}
+	}
+	if (result[0] >= 0 && result[0] <= 255 && result[1] >= 0
+		&& result[1] <= 255 && result[2] >= 0 && result[2] <= 255)
+		return (*color = (t_color){result[0], result[1], result[2]},
+			EXIT_SUCCESS);
+	return (EXIT_FAILURE);
+}
+
 // {
 // 	return (EXIT_FAILURE);
 // }
