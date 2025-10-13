@@ -1,6 +1,14 @@
 // #include "../includes/minirt.h"
 #include "parse.h"
-# define EPSILON 0.000001
+
+int	check_and_jump_spaces(char **line)
+{
+	if (**line == '\0' || is_white_space(**line) == false)
+		return (EXIT_FAILURE);
+	while (is_white_space(**line) == true)
+		(*line)++;
+	return (EXIT_SUCCESS);
+}
 
 /**
  * @brief the function move line points to and 
@@ -16,11 +24,8 @@
  */
 int	get_next_double_in_range(char **line, double *num, double min, double max)
 {
-	if (**line == '\0' || is_white_space(**line) == false)
+	if (check_and_jump_spaces(line) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	//jump all white_space
-	while (is_white_space(**line) == true)
-		(*line)++;
 	if (ft_atod_check_format(*line, num) == EXIT_SUCCESS)
 	{
 		if (*num >= min && *num <= max)
