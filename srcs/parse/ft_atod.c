@@ -72,7 +72,7 @@ static bool	is_good_double_format(char *str, int *count_int, int *count_frac)
 	return (false);
 }
 
-static int	swap_nul_and_atoi(int *result, char *str, char *end)
+int	swap_nul_and_atoi(int *result, char *str, char *end)
 {
 	char	nul;
 
