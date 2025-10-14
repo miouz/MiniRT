@@ -69,6 +69,43 @@ int	get_next_color(char **line, t_color *color)
 	return (EXIT_FAILURE);
 }
 
-// {
-// 	return (EXIT_FAILURE);
-// }
+int	iterate_str_get_doubles(char **line, double *result, int *index)
+{
+	char	*begin;
+
+	begin = *line;
+	while (**line
+		&& (ft_isdigit(**line) == true || **line == '.' || **line == '-'))
+	{
+		(*line)++;
+		if ((*index <= 1 && **line == ',') || (*index == 2
+				&& (**line == '\0' || is_white_space(**line) == true)))
+		{
+			printf("index is %d\n", *index);
+			if (swap_nul_and_atod(&result[*index], begin, *line)
+				== EXIT_FAILURE)
+				return (EXIT_FAILURE);
+			if (*index == 2)
+				return (EXIT_SUCCESS);
+			(*index)++;
+			begin = *line + 1;
+			if (**line)
+				(*line)++;
+		}
+	}
+	return (EXIT_FAILURE);
+}
+
+int	get_next_coordinates(char **line, t_coordinates *value)
+{
+	double	result[3];
+	int		index;
+
+	index = 0;
+	if (check_and_jump_spaces(line) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	if (iterate_str_get_doubles(line, result, &index) == EXIT_SUCCESS && index == 2)
+		return (*value = (t_coordinates){result[0], result[1], result[2]},
+			EXIT_SUCCESS);
+	return (EXIT_FAILURE);
+}
