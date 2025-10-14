@@ -1,35 +1,13 @@
 // #include "../includes/minirt.h"
 #include "parse.h"
 
-int	ft_atoi(const char *nptr)
-{
-	int	nbr;
-	int	i;
-	int	p_or_n;
 
-	nbr = 0;
-	i = 0;
-	p_or_n = 1;
-	while (((nptr[i] >= 9) && (nptr[i] <= 13)) || nptr[i] == 32)
-		i++;
-	if ((nptr[i] == '-') || (nptr[i] == '+'))
-	{
-		if (nptr[i] == '-')
-			p_or_n = -1;
-		i++;
-	}
-	while ((nptr[i] >= '0') && (nptr[i] <= '9'))
-	{
-		nbr = nbr * 10 + (nptr[i] - 48);
-		i++;
-	}
-	return (nbr * p_or_n);
-}
-
-static int	get_digit_count(char *str, int *count_int, int *count_frac)
+int	get_digit_count(char *str, int *count_int, int *count_frac)
 {
-	*count_int = 0;
-	*count_frac = 0;
+	if (count_int)
+		*count_int = 0;
+	if (count_frac)
+		*count_frac = 0;
 	while (str[*count_int] && ft_isdigit(str[*count_int]) == true)
 	{
 		(*count_int)++;
@@ -65,22 +43,24 @@ static bool	is_good_double_format(char *str, int *count_int, int *count_frac)
 	index_end = *count_int;
 	if (*count_frac > 0)
 		index_end = *count_int + *count_frac + 1;
-	if ((str[index_end] == '\0' || is_white_space(str[index_end]) == true)
+	if ((str[index_end] == '\0' || is_white_space(str[index_end]) == true
+			|| str[index_end] == ',')
 		&& *count_int <= MAX_DOUBLE_INT_COUNT && *count_int > 0
 		&& *count_frac <= MAX_DOUBLE_FRAC_COUNT)
 		return (true);
 	return (false);
 }
 
-int	swap_nul_and_atoi(int *result, char *str, char *end)
+int	swap_nul_and_atod(double *result, char *str, char *end)
 {
 	char	nul;
+	int		res_atod;
 
 	nul = '\0';
 	ft_swap(end, &nul);
-	*result = ft_atoi(str);
+	res_atod = ft_atod_check_format(str, result);
 	ft_swap(end, &nul);
-	return (EXIT_SUCCESS);
+	return (res_atod);
 }
 
 /**
