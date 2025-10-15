@@ -30,24 +30,26 @@ int	get_next_double_in_range(char **line, double *num, double min, double max)
 	return (EXIT_FAILURE);
 }
 
-int	iterate_str_get_3doubles(char **line, double *result, int *index)
+int	iterate_str_get_3doubles(char **line, double *result)
 {
 	char	*begin;
+	int		index;
 
 	begin = *line;
+	index = 0;
 	while (**line
 		&& (ft_isdigit(**line) == true || **line == '.' || **line == '-'))
 	{
 		(*line)++;
-		if ((*index <= 1 && **line == ',') || (*index == 2
+		if ((index <= 1 && **line == ',') || (index == 2
 				&& (**line == '\0' || is_white_space(**line) == true)))
 		{
-			if (swap_nul_and_atod(&result[*index], begin, *line)
+			if (swap_nul_and_atod(&result[index], begin, *line)
 				== EXIT_FAILURE)
 				return (EXIT_FAILURE);
-			if (*index == 2)
+			if (index == 2)
 				return (EXIT_SUCCESS);
-			(*index)++;
+			index++;
 			begin = *line + 1;
 			if (**line)
 				(*line)++;
@@ -59,13 +61,19 @@ int	iterate_str_get_3doubles(char **line, double *result, int *index)
 int	get_next_coordinates(char **line, t_coordinates *value)
 {
 	double	result[3];
-	int		index;
 
-	index = 0;
 	if (check_and_jump_spaces(line) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	if (iterate_str_get_3doubles(line, result, &index) == EXIT_SUCCESS && index == 2)
+	if (iterate_str_get_3doubles(line, result) == EXIT_SUCCESS)
 		return (*value = (t_coordinates){result[0], result[1], result[2]},
 			EXIT_SUCCESS);
+	return (EXIT_FAILURE);
+}
+
+int	get_next_vector(char **line, t_coordinates *value)
+{
+	if (get_next_coordinates(line, value) == EXIT_SUCCESS
+		&& is_normalized_vector(*value) == true)
+		return (EXIT_SUCCESS);
 	return (EXIT_FAILURE);
 }
