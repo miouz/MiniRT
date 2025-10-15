@@ -47,8 +47,7 @@ INTER_DIR := $(SRC_DIR)/intersections
 COLORS_DIR := $(SRC_DIR)/get_colors
 PIXELS_DIR := $(SRC_DIR)/get_pixels_coordinates
 UTILS_DIR := $(SRC_DIR)/utils
-# RENDER_DIR := $(SRC_DIR)/rendering
-# SCREEN_DIR := $(SRC_DIR)/parsing
+PARSING_DIR := $(SRC_DIR)/parsing
 
 
 # ============================================================================ #
@@ -79,6 +78,17 @@ PIXELS_SRC := $(PIXELS_DIR)/get_screen.c \
 #Utils
 UTILS_SRC := $(UTILS_DIR)/utils.c \
 			 $(UTILS_DIR)/minilibx.c
+
+#Parsing
+PARSING_SRC := $(PARSING_DIR)/checkers.c \
+			   $(PARSING_DIR)/ft_atod_check_format.c \
+			   $(PARSING_DIR)/ft_atoi_check_format.c \
+			   $(PARSING_DIR)/ft_itoa.c \
+			   $(PARSING_DIR)/getters_double.c \
+			   $(PARSING_DIR)/getters_int.c \
+			   $(PARSING_DIR)/parse.c \
+			   $(PARSING_DIR)/parse_objects.c \
+			   $(PARSING_DIR)/parse_utils.c \
 
 #Main
 MAIN_SRC := $(SRC_DIR)/main.c
