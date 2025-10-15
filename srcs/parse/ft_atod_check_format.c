@@ -1,7 +1,6 @@
 // #include "../includes/minirt.h"
 #include "parse.h"
 
-
 int	get_digit_count(char *str, int *count_int, int *count_frac)
 {
 	if (count_int)
@@ -51,6 +50,14 @@ static bool	is_good_double_format(char *str, int *count_int, int *count_frac)
 	return (false);
 }
 
+/**
+ * @brief swap end with \0 to get a string in order to use atod
+ *
+ * @param result address of the double to fill
+ * @param str address of string's begin
+ * @param end address of string's end
+ * @return return result of ft_atod_check_format
+ */
 int	swap_nul_and_atod(double *result, char *str, char *end)
 {
 	char	nul;
