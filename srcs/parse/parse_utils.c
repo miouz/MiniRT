@@ -30,3 +30,12 @@ void	ft_swap(char *a, char *b)
 	*a = *b;
 	*b = tmp;
 }
+
+int	check_and_jump_spaces(char **line)
+{
+	if (**line == '\0' || is_white_space(**line) == false)
+		return (EXIT_FAILURE);
+	while (is_white_space(**line) == true)
+		(*line)++;
+	return (EXIT_SUCCESS);
+}
