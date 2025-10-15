@@ -4,6 +4,9 @@
 # define ERROR_ARG_NUM "Error: please run ./miniRT <file's name>\n"
 # define ERROR_ARG_FORMAT "Error: file's name should terminate with .rt\n"
 # define ERROR_DOUBLE_FORMAT "Error: need less than 9(int) + 5(frac) digits\n"
+# define ERROR_AML "Error: ambient light not correct\n"
+# define ERROR_CAM "Error: camera not correct\n"
+# define ERROR_LIGHT "Error: light not correct\n"
 
 # define MAX_DOUBLE_INT_COUNT 9
 # define MAX_DOUBLE_FRAC_COUNT 5
@@ -17,13 +20,52 @@
 # include <stdio.h>
 # include <math.h>
 
-int	ft_atod_check_format(char *str, double *result);
-bool	no_info_in_rest_of_line(char *str);
+
+typedef struct s_coordinates
+{
+	double	x;
+	double	y;
+	double	z;
+	int		type;
+}	t_coordinates;
+
+typedef struct s_color
+{
+	int	red;
+	int	green;
+	int	blue;
+}	t_color;
+
+/*==================================PARSE_ARG===========================*/
+bool	is_valid_arg(int argc, char **argv);
+int		setup_data(t_data *data, int argc, char **argv);
+
+/*==================================PARSE_OBJECTS===========================*/
+int		parse_ambient_light(char *rest, t_data *data);
+int		parse_camera(char *rest, t_data *data);
+int		parse_light(char *rest, t_data *data);
+
+/*==================================GETTERS===========================*/
 int		get_next_double_in_range(char **str, double *num,
 			double min, double max);
+int		get_next_coordinates(char **line, t_coordinates *value);
+int		get_next_int_in_range(char **line, int *result, int min, int max);
+int		get_next_color(char **line, t_color *color);
+
+/*==================================CHECKERS===========================*/
+bool	int_is_in_range(int value, int min, int max);
+bool	double_is_in_range(double value, double min, double max);
+bool	no_info_in_rest_of_line(char *str);
 bool	is_white_space(int c);
 bool	ft_isdigit(int c);
 bool	is_negative_sign(char c);
+
+/*==================================UTILS===========================*/
+int		ft_atod_check_format(char *str, double *result);
+int		ft_atoi(const char *nptr);
+char	*ft_itoa(int n);
+int		swap_nul_and_atod(double *result, char *str, char *end);
+int		swap_nul_and_atoi(int *result, char *str, char *end);
 void	ft_swap(char *a, char *b);
 
 #endif // !PARSE_H
