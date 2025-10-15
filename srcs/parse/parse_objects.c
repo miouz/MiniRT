@@ -1,5 +1,4 @@
-// #include "../includes/minirt.h"
-#include "parse.h"
+#include "../includes/minirt.h"
 
 int	parse_ambient_light(char *rest, t_data *data)
 {
@@ -13,7 +12,7 @@ int	parse_ambient_light(char *rest, t_data *data)
 			&rest, &data->ambient_lighting.color) == EXIT_SUCCESS
 		&& no_info_in_rest_of_line(rest) == true)
 		return (one_ambient_light = true, EXIT_SUCCESS);
-	return (EXIT_FAILURE);
+	return (error_msg(ERROR_AML), EXIT_FAILURE);
 }
 
 int	parse_camera(char *rest, t_data *data)
@@ -23,10 +22,11 @@ int	parse_camera(char *rest, t_data *data)
 	if (one_camera == true)
 		return (error_msg(ERROR_CAM), EXIT_FAILURE);
 	if (get_next_coordinates(&rest, &data->camera.center) == EXIT_SUCCESS
-		&& get_next_coordinates(&rest, &data->camera.direction) == EXIT_SUCCESS
-		&& get_next_int_in_range(&rest, &data->camera.fov, 0, 180) == EXIT_SUCCESS)
+		&& get_next_vector(&rest, &data->camera.direction) == EXIT_SUCCESS
+		&& get_next_int_in_range(&rest, &data->camera.fov, 0, 180)
+		== EXIT_SUCCESS)
 		return (one_camera = true, EXIT_SUCCESS);
-	return (EXIT_FAILURE);
+	return (error_msg(ERROR_CAM), EXIT_FAILURE);
 }
 
 int	parse_light(char *rest, t_data *data)
@@ -40,5 +40,5 @@ int	parse_light(char *rest, t_data *data)
 			&data->light.intensity, 0, 1) == EXIT_SUCCESS
 		&& get_next_color(&rest, &data->light.color) == EXIT_SUCCESS)
 		return (one_light = true, EXIT_SUCCESS);
-	return (EXIT_FAILURE);
+	return (error_msg(ERROR_LIGHT), EXIT_FAILURE);
 }
