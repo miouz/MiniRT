@@ -21,26 +21,6 @@ int	swap_nul_and_atoi(int *result, char *str, char *end)
 	return (EXIT_SUCCESS);
 }
 
-/**
- * @brief atoi and check integer overflow
- *
- * @param str address of string
- * @param result address of integer to write value
- * @return EXIT_SUCCESS if good format and EXIT_FAILURE if bad format
- */
-int	ft_atoi_check_format(char *str, int *result )
-{
-	char	*return_itoa;
-
-	*result = ft_atoi(str);
-	return_itoa = ft_itoa(*result);
-	if (return_itoa == NULL)
-		return (EXIT_FAILURE);
-	if (ft_strncmp(str, return_itoa, ft_strlen(str)) == 0)
-		return (free(return_itoa), EXIT_SUCCESS);
-	return (free(return_itoa), EXIT_FAILURE);
-}
-
 int	ft_atoi(const char *nptr)
 {
 	int	nbr;
@@ -64,4 +44,24 @@ int	ft_atoi(const char *nptr)
 		i++;
 	}
 	return (nbr * p_or_n);
+}
+
+/**
+ * @brief atoi and check integer overflow
+ *
+ * @param str address of string
+ * @param result address of integer to write value
+ * @return EXIT_SUCCESS if good format and EXIT_FAILURE if bad format
+ */
+int	ft_atoi_check_format(char *str, int *result )
+{
+	char	*return_itoa;
+
+	*result = ft_atoi(str);
+	return_itoa = ft_itoa(*result);
+	if (return_itoa == NULL)
+		return (EXIT_FAILURE);
+	if (ft_strncmp(str, return_itoa, ft_strlen(str)) == 0)
+		return (free(return_itoa), EXIT_SUCCESS);
+	return (free(return_itoa), EXIT_FAILURE);
 }
