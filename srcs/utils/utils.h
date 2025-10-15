@@ -1,17 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_colors.h                                       :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzhou <mzhou@student.42.fr>                +#+  +:+       +#+        */
+/*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/30 14:30:46 by mzhou             #+#    #+#             */
-/*   Updated: 2025/09/30 14:30:46 by mzhou            ###   ########.fr       */
+/*   Created: 2025/09/30 16:47:39 by anony             #+#    #+#             */
+/*   Updated: 2025/10/02 20:52:54 by anony            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_COLORS_H
-# define GET_COLORS_H
+#ifndef UTILS_H
+# define UTILS_H
 
-void	get_colors(struct s_data *data, int size_line);
-#endif // !GET_COLORS_H
+int		ft_strlen(char *str);
+void	error_msg(char *str);
+int		close_minilibx(t_minilibx_data *data);
+void	initialize_minilibx(t_minilibx_data *minilibx);
+
+#endif

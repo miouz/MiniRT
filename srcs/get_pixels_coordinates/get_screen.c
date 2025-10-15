@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_screen.c                                    :+:      :+:    :+:   */
+/*   get_screen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:54:16 by anony             #+#    #+#             */
-/*   Updated: 2025/09/30 13:54:07 by anony            ###   ########.fr       */
+/*   Updated: 2025/10/02 21:06:11 by anony            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 t_coordinates	get_screen_center(t_camera cam)
 {
 	t_coordinates	screen_center;
-	double		distance;
+	double			distance;
+	double			angle;
 
-	distance = (double)(LENGHT / 2.0) * (double)tan(cam.fov / 2);
+	angle = (cam.fov / 180.0) * M_PI;
+	distance = (double)(LENGHT / 2.0) / (double)tan(angle / 2);
 	screen_center.type = 1;
 	screen_center.x = cam.center.x + distance * cam.direction.x;
 	screen_center.y = cam.center.y + distance * cam.direction.y;
@@ -25,7 +27,7 @@ t_coordinates	get_screen_center(t_camera cam)
 	return (screen_center);
 }
 
-t_coordinates	get_u_screen_direction_vector(t_coordinates cam_dir)
+t_coordinates	get_u_screen_vector(t_coordinates cam_dir)
 {
 	t_coordinates	u;
 
@@ -45,7 +47,7 @@ t_coordinates	get_u_screen_direction_vector(t_coordinates cam_dir)
 	return (u);
 }
 
-t_coordinates	get_v_screen_direction_vector(t_coordinates cam_dir, t_coordinates u)
+t_coordinates	get_v_screen_vector(t_coordinates cam_dir, t_coordinates u)
 {
 	t_coordinates	v;
 
@@ -61,7 +63,7 @@ t_screen	get_screen(t_camera cam)
 	t_screen	screen;
 
 	screen.center = get_screen_center(cam);
-	screen.u = get_u_screen_direction_vector(cam.direction);
-	screen.v = get_v_screen_direction_vector(cam.direction, screen.u);
+	screen.u = get_u_screen_vector(cam.direction);
+	screen.v = get_v_screen_vector(cam.direction, screen.u);
 	return (screen);
 }

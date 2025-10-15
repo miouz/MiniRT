@@ -6,15 +6,26 @@
 /*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 18:33:08 by anony             #+#    #+#             */
-/*   Updated: 2025/09/22 13:48:06 by anony            ###   ########.fr       */
+/*   Updated: 2025/10/02 20:52:16 by anony            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "../includes/minirt.h"
 
-double  absolute_value(double   nb)
+int	ft_strlen(char *str)
 {
-    if (nb < 0)
-        return (-nb);
-    return (nb);
+	int	i;
+
+	i = 0;
+	while (str && str[i])
+		i++;
+	return (i);
+}
+
+void	error_msg(char *msg)
+{
+	int	size;
+
+	size = ft_strlen(msg);
+	write(2, msg, size);
 }

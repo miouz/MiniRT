@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_ray_object_intersect_time.c                    :+:      :+:    :+:   */
+/*   ray_sphere_intersect.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzhou <mzhou@student.42.fr>                +#+  +:+       +#+        */
+/*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 15:23:40 by mzhou             #+#    #+#             */
-/*   Updated: 2025/09/22 15:23:45 by mzhou            ###   ########.fr       */
+/*   Updated: 2025/10/02 20:50:50 by anony            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,10 @@ double	get_time_from_discriminant(double a, double b, double discriminant)
  * t = (-b ± √(b² - 4ac))/2a where discriminant = b² - 4ac
  * @param object address of the sphere.
  * @param ray address of the given ray.
- * @return time value if intersect, TIME_VAL_NO_INTERSECTION(-1) if no intersection. 
+ * @return time value if intersect, TIME_VAL_NO_INTERSECTION(-1) 
+ * 	if no intersection.
  */
-double	get_ray_sphere_intersect_time(t_sphere *sphere, t_ray *ray)
+double	get_ray_sphere_inter_time(t_sphere *sphere, t_ray *ray)
 {
 	t_coordinates	vec_oc;
 	double			a;
@@ -63,8 +64,6 @@ double	get_ray_sphere_intersect_time(t_sphere *sphere, t_ray *ray)
 
 	vec_oc = vec_substract(ray->origin, sphere->center);
 	a = vec_dot_product(ray->direction, ray->direction);
-	if (a != 1)
-		error_msg("vector not normalized\n");
 	b = 2 * vec_dot_product(ray->direction, vec_oc);
 	c = vec_dot_product(vec_oc, vec_oc) - pow(sphere->diameter / 2, 2);
 	discriminant = b * b - 4 * a * c;
