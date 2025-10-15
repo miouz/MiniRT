@@ -20,22 +20,6 @@
 # include <stdio.h>
 # include <math.h>
 
-
-typedef struct s_coordinates
-{
-	double	x;
-	double	y;
-	double	z;
-	int		type;
-}	t_coordinates;
-
-typedef struct s_color
-{
-	int	red;
-	int	green;
-	int	blue;
-}	t_color;
-
 /*==================================PARSE_ARG===========================*/
 bool	is_valid_arg(int argc, char **argv);
 int		setup_data(t_data *data, int argc, char **argv);
@@ -49,6 +33,7 @@ int		parse_light(char *rest, t_data *data);
 int		get_next_double_in_range(char **str, double *num,
 			double min, double max);
 int		get_next_coordinates(char **line, t_coordinates *value);
+int		get_next_vector(char **line, t_coordinates *value);
 int		get_next_int_in_range(char **line, int *result, int min, int max);
 int		get_next_color(char **line, t_color *color);
 
@@ -59,13 +44,17 @@ bool	no_info_in_rest_of_line(char *str);
 bool	is_white_space(int c);
 bool	ft_isdigit(int c);
 bool	is_negative_sign(char c);
+bool	is_normalized_vector(t_coordinates vector);
 
 /*==================================UTILS===========================*/
+int		check_and_jump_spaces(char **line);
 int		ft_atod_check_format(char *str, double *result);
+int		ft_atoi_check_format(char *str, int *result );
 int		ft_atoi(const char *nptr);
 char	*ft_itoa(int n);
 int		swap_nul_and_atod(double *result, char *str, char *end);
 int		swap_nul_and_atoi(int *result, char *str, char *end);
 void	ft_swap(char *a, char *b);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 #endif // !PARSE_H
