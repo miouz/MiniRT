@@ -1,5 +1,4 @@
-// #include "../includes/minirt.h"
-#include "parse.h"
+#include "../includes/minirt.h"
 
 int	get_digit_count(char *str, int *count_int, int *count_frac)
 {

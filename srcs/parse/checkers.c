@@ -1,5 +1,4 @@
-// #include "../includes/minirt.h"
-#include "parse.h"
+#include "../includes/minirt.h"
 
 bool	is_normalized_vector(t_coordinates vector)
 {

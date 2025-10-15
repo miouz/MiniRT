@@ -1,5 +1,4 @@
-// #include "../includes/minirt.h"
-#include "parse.h"
+#include "../includes/minirt.h"
 
 /**
  * @brief swap end with \0 in order to use atoi

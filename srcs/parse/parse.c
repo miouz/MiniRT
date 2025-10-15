@@ -1,5 +1,5 @@
 
-#include "../includes/minirt.h"
+// #include "../includes/minirt.h"
 #include "parse.h"
 
 bool	is_valid_arg(int argc, char **argv)

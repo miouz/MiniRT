@@ -1,4 +1,4 @@
-#include "parse.h"
+#include "../includes/minirt.h"
 
 /**
  * @brief the function move line points to and 

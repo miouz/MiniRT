@@ -1,4 +1,5 @@
-#include "parse.h"
+
+#include "../includes/minirt.h"
 
 int	forward_str_get_int(char **line, char **begin)
 {
@@ -16,7 +17,7 @@ int	forward_str_get_int(char **line, char **begin)
 
 int	get_next_int_in_range(char **line, int *result, int min, int max)
 {
-	char *begin;
+	char	*begin;
 
 	if (check_and_jump_spaces(line) == EXIT_FAILURE)
 		return (EXIT_FAILURE);

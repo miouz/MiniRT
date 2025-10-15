@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../includes/minirt.h"
+
 /*convert integer to string without consider overflow*/
 static size_t	count(int n)
 {
