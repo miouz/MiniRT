@@ -19,6 +19,7 @@
 # include "../get_colors/get_colors.h" 
 # include "../get_pixels_coordinates/get_pixels_coordinates.h"
 # include "../utils/utils.h"
+# include "../parse/parse.h"
 # include "../../minilibx-linux/mlx.h"
 
 #endif
