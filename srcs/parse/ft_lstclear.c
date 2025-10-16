@@ -12,7 +12,7 @@
 
 #include "../includes/minirt.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void **))
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
 	t_list	*ptr;
 
@@ -22,7 +22,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void **))
 	{
 		ptr = *lst;
 		*lst = (*lst)->next;
-		del(&ptr->content);
+		del(ptr->content);
 		free(ptr);
 		ptr = NULL;
 	}
