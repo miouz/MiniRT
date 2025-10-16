@@ -64,3 +64,4 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 t_list	*ft_lstnew(void *content);
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void **));
+void	*ft_memcpy(void *dest, const void *src, size_t n);
