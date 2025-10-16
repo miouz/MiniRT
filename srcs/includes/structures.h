@@ -20,7 +20,7 @@
 # define HEIGHT 800
 # define LENGHT 800
 # define EPSILON 0.00001
-# define M_PI 3.14159265358979323846
+// # define M_PI 3.14159265358979323846
 
 /*==================================MINILIBX_DATA===========================*/
 typedef struct s_minilibx_data
@@ -40,7 +40,7 @@ typedef struct s_coordinates
 	double	x;
 	double	y;
 	double	z;
-	int		type;
+	// int		type;
 }	t_coordinates;
 
 /*==================================OBJECT_DATA===========================*/

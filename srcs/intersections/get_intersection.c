@@ -78,7 +78,6 @@ int	get_hit_point(t_intersect *intersect_point, t_ray *ray,
 void	get_ray_from_camera(t_data *data, int ind, t_ray *ray)
 {
 	ray->origin = data->camera.center;
-	ray->direction.type = 0;
 	ray->direction.x = data->pixels[ind].x - ray->origin.x;
 	ray->direction.y = data->pixels[ind].y - ray->origin.y;
 	ray->direction.z = data->pixels[ind].z - ray->origin.z;

@@ -26,7 +26,7 @@ t_coordinates	vec_normalize(t_coordinates a);
 double			vec_dot_product(t_coordinates a, t_coordinates b);
 double			vec_magnitude(t_coordinates a);
 int				vec_equals(t_coordinates a, t_coordinates b);
-t_coordinates	vec_creat(double x, double y, double z, int type);
+t_coordinates	vec_creat(double x, double y, double z);
 
 #endif /* ifdef VECTOR_OPERATIONS_H
  */

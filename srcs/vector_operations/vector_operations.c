@@ -27,7 +27,6 @@ t_coordinates	vec_substract(t_coordinates a, t_coordinates b)
 	c.x = a.x - b.x;
 	c.y = a.y - b.y;
 	c.z = a.z - b.z;
-	c.type = a.type - b.type;
 	return (c);
 }
 
@@ -38,7 +37,6 @@ t_coordinates	vec_add(t_coordinates a, t_coordinates b)
 	c.x = a.x + b.x;
 	c.y = a.y + b.y;
 	c.z = a.z + b.z;
-	c.type = a.type + b.type;
 	return (c);
 }
 
@@ -49,7 +47,6 @@ t_coordinates	vec_scala_multiply(t_coordinates a, double b)
 	c.x = a.x * b;
 	c.y = a.y * b;
 	c.z = a.z * b;
-	c.type = a.type * b;
 	return (c);
 }
 
@@ -65,7 +62,6 @@ t_coordinates	vec_scala_divide(t_coordinates a, double b)
 	c.x = a.x / b;
 	c.y = a.y / b;
 	c.z = a.z / b;
-	c.type = a.type / b;
 	return (c);
 }
 
@@ -83,6 +79,5 @@ t_coordinates	vec_normalize(t_coordinates a)
 	c.x = a.x / magnitude;
 	c.y = a.y / magnitude;
 	c.z = a.z / magnitude;
-	c.type = a.type / magnitude;
 	return (c);
 }

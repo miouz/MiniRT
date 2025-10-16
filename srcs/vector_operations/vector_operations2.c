@@ -29,13 +29,12 @@ int	vec_equals(t_coordinates a, t_coordinates b)
 		&& fabs(a.z - b.z) < EPSILON);
 }
 
-t_coordinates	vec_creat(double x, double y, double z, int type)
+t_coordinates	vec_creat(double x, double y, double z)
 {
 	t_coordinates	vector;
 
 	vector.x = x;
 	vector.y = y;
 	vector.z = z;
-	vector.type = type;
 	return (vector);
 }

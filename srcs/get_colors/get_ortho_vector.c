@@ -28,7 +28,6 @@ t_coordinates	get_sphere_ortho_vector(t_intersect intersect)
 
 	sphere = intersect.obj->data.sphere;
 	radius = sphere.diameter / 2.0;
-	ortho_vector.type = 0;
 	ortho_vector.x = (intersect.point.x - sphere.center.x) / radius;
 	ortho_vector.y = (intersect.point.y - sphere.center.y) / radius;
 	ortho_vector.z = (intersect.point.z - sphere.center.z) / radius;

@@ -20,7 +20,6 @@ t_coordinates	get_screen_center(t_camera cam)
 
 	angle = (cam.fov / 180.0) * M_PI;
 	distance = (double)(LENGHT / 2.0) / (double)tan(angle / 2);
-	screen_center.type = 1;
 	screen_center.x = cam.center.x + distance * cam.direction.x;
 	screen_center.y = cam.center.y + distance * cam.direction.y;
 	screen_center.z = cam.center.z + distance * cam.direction.z;
@@ -31,7 +30,6 @@ t_coordinates	get_u_screen_vector(t_coordinates cam_dir)
 {
 	t_coordinates	u;
 
-	u.type = 0;
 	if (cam_dir.x == 0.0 && cam_dir.z == 0.0)
 	{
 		u.x = 1;
@@ -51,7 +49,6 @@ t_coordinates	get_v_screen_vector(t_coordinates cam_dir, t_coordinates u)
 {
 	t_coordinates	v;
 
-	v.type = 0;
 	v.x = u.y * cam_dir.z - u.z * cam_dir.y;
 	v.y = u.z * cam_dir.x - u.x * cam_dir.z;
 	v.z = u.x * cam_dir.y - u.y * cam_dir.x;
