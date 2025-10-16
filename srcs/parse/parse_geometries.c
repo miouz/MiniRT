@@ -51,6 +51,13 @@ int	parse_plane(char *rest, t_object *object)
 	return (error_msg(ERROR_PLANE), EXIT_FAILURE);
 }
 
+/**
+ * @brief it malloc for content and node, add the new node to the list
+ *
+ * @param last_obj address of last_obj on the list
+ * @return EXIT_FAILURE if malloc problem
+ * @warning this function malloc but doesn't free locally!
+ */
 static int	creat_add_obj_to_lst(t_list *last_obj)
 {
 	t_list		*new;
@@ -74,17 +81,18 @@ static int	creat_add_obj_to_lst(t_list *last_obj)
  * @param last_obj address of last_obj's node on the linked list
  * @param data address of structure data
  * @return return EXIT_SUCCESS or EXIT_FAILURE
- * @warning this function malloc but doesn't free locally!
+ * @warning this function update the linked list's cursor to the last object!
  */
 int	parse_geometry(char *rest,
-		int *parse_func(char *, t_list *), t_list *last_obj, t_data *data)
+		int *parse_func(char *, t_list *), t_list **last_obj, t_data *data)
 {
 	if (parse_func)
 	{
-		if (creat_add_obj_to_lst(last_obj) == EXIT_SUCCESS
-			&& parse_func(rest, last_obj->next->content) == EXIT_SUCCESS)
+		if (creat_add_obj_to_lst(*last_obj) == EXIT_SUCCESS
+			&& parse_func(rest, (*last_obj)->next->content) == EXIT_SUCCESS)
 		{
 			data->nb_objects++;
+			*last_obj = (*last_obj)->next;
 			return (EXIT_SUCCESS);
 		}
 	}
