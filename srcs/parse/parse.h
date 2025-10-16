@@ -7,11 +7,15 @@
 # define ERROR_AML "Error: ambient light not correct\n"
 # define ERROR_CAM "Error: camera not correct\n"
 # define ERROR_LIGHT "Error: light not correct\n"
+# define ERROR_SPHERE "Error: sphere not correct\n"
+# define ERROR_PLANE "Error: plane not correct\n"
+# define ERROR_CYLINDER "Error: cylinder not correct\n"
 
 # define MAX_DOUBLE_INT_COUNT 9
 # define MAX_DOUBLE_FRAC_COUNT 5
 # define MAX_DOUBLE_INT 2000000
 # define MAX_DOUBLE_FRAC 4000000
+# define MAX_DOUBLE 9999999
 
 # include <fcntl.h>
 # include <stdbool.h>
@@ -19,6 +23,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <math.h>
+# include <limits.h>
 
 /*==================================PARSE_ARG===========================*/
 bool	is_valid_arg(int argc, char **argv);
@@ -56,5 +61,6 @@ int		swap_nul_and_atod(double *result, char *str, char *end);
 int		swap_nul_and_atoi(int *result, char *str, char *end);
 void	ft_swap(char *a, char *b);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-
-#endif // !PARSE_H
+t_list	*ft_lstnew(void *content);
+void	ft_lstiter(t_list *lst, void (*f)(void *));
+void	ft_lstclear(t_list **lst, void (*del)(void **));
