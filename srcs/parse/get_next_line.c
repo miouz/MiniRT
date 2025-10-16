@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "../includes/minirt.h"
 
-char	*ft_str_n_join(char const *s1, char const *s2, size_t n)
+char	*ft_str_n_join(char *s1, char *s2, size_t n)
 {
 	size_t	i;
 	char	*new;

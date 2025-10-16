@@ -12,18 +12,6 @@
 
 #include "../includes/minirt.h"
 
-
-// int	init_data(t_data *data)
-// {
-// 	data->pixels = malloc((HEIGHT * LENGHT) * sizeof(t_coordinates));
-// 	if (data->pixels == NULL)
-// 		return (perror("malloc"), EXIT_FAILURE);
-// 	data->intersects = malloc((HEIGHT * LENGHT) * sizeof(t_intersect));
-// 	if (data->intersects == NULL)
-// 		return (perror("malloc"), free(data->pixels), EXIT_FAILURE);
-// 	return (EXIT_SUCCESS);
-// }
-
 static int	open_file_get_fd(int *fd, char *file_name)
 {
 	*fd = open(file_name, O_RDONLY);
@@ -32,11 +20,10 @@ static int	open_file_get_fd(int *fd, char *file_name)
 	return (EXIT_SUCCESS);
 }
 
-static int	init_parse_data(t_data *data, t_list *lst, int *obj_count)
+static int	init_parse_data(t_data *data, int *obj_count)
 {
 	data->nb_objects = 0;
 	data->objects = NULL;
-	lst = NULL;
 	obj_count[0] = 0;
 	obj_count[1] = 0;
 	obj_count[2] = 0;
@@ -78,9 +65,10 @@ int	setup_data(t_data *data, int argc, char **argv)
 	t_list	*obj;
 	int		obj_count[3];
 
+	obj = NULL;
 	if (is_valid_arg(argc, argv) == false
 		|| open_file_get_fd(&fd, argv[1]) == EXIT_FAILURE
-		|| init_parse_data(data, obj, obj_count) == EXIT_FAILURE)
+		|| init_parse_data(data, obj_count) == EXIT_FAILURE)
 		exit(EXIT_FAILURE);
 	if (get_line_and_parse(fd, data, obj, obj_count) == EXIT_FAILURE)
 	{

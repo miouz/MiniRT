@@ -17,7 +17,7 @@ int	swap_nul_and_atoi(int *result, char *str, char *end)
 	ft_swap(end, &nul);
 	res_atoi = ft_atoi_check_format(str, result);
 	ft_swap(end, &nul);
-	return (EXIT_SUCCESS);
+	return (res_atoi);
 }
 
 int	ft_atoi(const char *nptr)

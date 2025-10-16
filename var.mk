@@ -47,7 +47,7 @@ INTER_DIR := $(SRC_DIR)/intersections
 COLORS_DIR := $(SRC_DIR)/get_colors
 PIXELS_DIR := $(SRC_DIR)/get_pixels_coordinates
 UTILS_DIR := $(SRC_DIR)/utils
-PARSING_DIR := $(SRC_DIR)/parsing
+PARSING_DIR := $(SRC_DIR)/parse
 
 
 # ============================================================================ #
@@ -80,15 +80,23 @@ UTILS_SRC := $(UTILS_DIR)/utils.c \
 			 $(UTILS_DIR)/minilibx.c
 
 #Parsing
-PARSING_SRC := $(PARSING_DIR)/checkers.c \
+PARSING_SRC := $(PARSING_DIR)/checkers_parse.c \
+			   $(PARSING_DIR)/checkers_setup_data.c \
 			   $(PARSING_DIR)/ft_atod_check_format.c \
 			   $(PARSING_DIR)/ft_atoi_check_format.c \
 			   $(PARSING_DIR)/ft_itoa.c \
+			   $(PARSING_DIR)/ft_lstclear.c \
+			   $(PARSING_DIR)/ft_lstnew.c \
+			   $(PARSING_DIR)/ft_memchr.c \
+			   $(PARSING_DIR)/ft_memcpy.c \
+			   $(PARSING_DIR)/get_line_and_parse.c \
+			   $(PARSING_DIR)/get_next_line.c \
 			   $(PARSING_DIR)/getters_double.c \
 			   $(PARSING_DIR)/getters_int.c \
-			   $(PARSING_DIR)/parse.c \
+			   $(PARSING_DIR)/parse_geometries.c \
 			   $(PARSING_DIR)/parse_objects.c \
 			   $(PARSING_DIR)/parse_utils.c \
+			   $(PARSING_DIR)/setup_data.c \
 
 #Main
 MAIN_SRC := $(SRC_DIR)/main.c
@@ -99,7 +107,8 @@ SRCS :=	$(VECTOR_SRC) \
 		$(COLORS_SRC) \
 		$(PIXELS_SRC) \
 		$(UTILS_SRC) \
-		$(MAIN_SRC)
+		$(MAIN_SRC) \
+		$(PARSING_SRC)
 
 
 # Get all .c files recursively

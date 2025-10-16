@@ -66,8 +66,7 @@ int		parse_camera(char *rest, t_data *data);
 int		parse_light(char *rest, t_data *data);
 
 /*==================================PARSE_GEOMETRY===========================*/
-int		parse_geometry(char *rest,
-			int *parse_func(char *, t_list *), t_list **last_obj, t_data *data);
+int		parse_geometry(char *rest, int parse_func(char *, t_object *), t_list **last_obj, t_data *data);
 int		parse_plane(char *rest, t_object *object);
 int		parse_cylinder(char *rest, t_object *object);
 int		parse_sphere(char *rest, t_object *object);
@@ -102,7 +101,6 @@ int		swap_nul_and_atoi(int *result, char *str, char *end);
 void	ft_swap(char *a, char *b);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 t_list	*ft_lstnew(void *content);
-void	ft_lstiter(t_list *lst, void (*f)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 char	*get_next_line(int fd);
