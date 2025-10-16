@@ -12,7 +12,6 @@
 
 #ifndef INTERSECTION_H
 # define INTERSECTION_H
-# define SCENE_OBJECT_QUANTITIES 7
 # define TIME_VAL_NO_INTERSECTION -1
 
 # include <unistd.h>
