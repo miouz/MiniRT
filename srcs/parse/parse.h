@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mzhou <mzhou@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/01 13:42:45 by mzhou             #+#    #+#             */
+/*   Updated: 2025/10/01 13:42:45 by mzhou            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PARSE_H
 # define PARSE_H
 
@@ -16,6 +28,8 @@
 # define MAX_DOUBLE_INT 2000000
 # define MAX_DOUBLE_FRAC 4000000
 # define MAX_DOUBLE 9999999
+
+# define ERROR_SCENE_FILE "Error: fail to generate scene with file\n"
 
 # include <fcntl.h>
 # include <stdbool.h>
@@ -65,3 +79,6 @@ t_list	*ft_lstnew(void *content);
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void **));
 void	*ft_memcpy(void *dest, const void *src, size_t n);
+int	setup_data(t_data *data, int argc, char **argv);
+
+#endif // !PARSE_H
