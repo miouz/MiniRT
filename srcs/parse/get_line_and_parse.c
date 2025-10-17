@@ -15,7 +15,7 @@
  * @warning the function DO NOT free the line DO NOT exit neither
  */
 static int	parse_line_in_file(char *line, t_data *data,
-			t_list **obj, int *obj_count)
+			t_list **last_obj, int *obj_count)
 {
 	if (ft_strncmp(line, "A", 1) == 0)
 		return (obj_count[0]++, parse_ambient_light(line + 1, data));
@@ -24,15 +24,15 @@ static int	parse_line_in_file(char *line, t_data *data,
 	if (ft_strncmp(line, "L", 1) == 0)
 		return (obj_count[2]++, parse_light(line + 1, data));
 	if (ft_strncmp(line, "sp", 2) == 0)
-		return (parse_geometry(line + 2, &parse_sphere, obj, data));
+		return (parse_geometry(line + 2, &parse_sphere, last_obj, data));
 	if (ft_strncmp(line, "pl", 2) == 0)
-		return (parse_geometry(line + 2, &parse_plane, obj, data));
+		return (parse_geometry(line + 2, &parse_plane, last_obj, data));
 	if (ft_strncmp(line, "cy", 2) == 0)
-		return (parse_geometry(line + 2, &parse_cylinder, obj, data));
+		return (parse_geometry(line + 2, &parse_cylinder, last_obj, data));
 	return (error_msg(ERROR_SCENE_FILE), EXIT_FAILURE);
 }
 
-int	get_line_and_parse(int fd, t_data *data, t_list *obj, int *obj_count)
+int	get_line_and_parse(int fd, t_data *data, t_list **head, int *obj_count)
 {
 	char	*line;
 
@@ -42,7 +42,7 @@ int	get_line_and_parse(int fd, t_data *data, t_list *obj, int *obj_count)
 		if (line == NULL)
 			return (EXIT_SUCCESS);
 		if (no_info_in_rest_of_line(line) == false
-			&& parse_line_in_file(line, data, &obj, obj_count)
+			&& parse_line_in_file(line, data, head, obj_count)
 			== EXIT_FAILURE)
 			return (free(line), EXIT_FAILURE);
 		free(line);

@@ -86,6 +86,7 @@ PARSING_SRC := $(PARSING_DIR)/checkers_parse.c \
 			   $(PARSING_DIR)/ft_atoi_check_format.c \
 			   $(PARSING_DIR)/ft_itoa.c \
 			   $(PARSING_DIR)/ft_lstclear.c \
+			   $(PARSING_DIR)/ft_lstadd_front.c \
 			   $(PARSING_DIR)/ft_lstnew.c \
 			   $(PARSING_DIR)/ft_memchr.c \
 			   $(PARSING_DIR)/ft_memcpy.c \

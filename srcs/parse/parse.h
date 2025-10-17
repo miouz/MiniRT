@@ -57,7 +57,7 @@ typedef struct s_dat
 
 /*==================================PARSE_FUNC===========================*/
 int		check_and_jump_spaces(char **line);
-int		get_line_and_parse(int fd, t_data *data, t_list *obj, int *obj_count);
+int		get_line_and_parse(int fd, t_data *data, t_list **obj, int *obj_count);
 int		setup_data(t_data *data, int argc, char **argv);
 
 /*==================================PARSE_OBJECTS===========================*/
@@ -101,6 +101,7 @@ int		swap_nul_and_atoi(int *result, char *str, char *end);
 void	ft_swap(char *a, char *b);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 t_list	*ft_lstnew(void *content);
+void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 char	*get_next_line(int fd);

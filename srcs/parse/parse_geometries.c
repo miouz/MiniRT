@@ -58,7 +58,7 @@ int	parse_plane(char *rest, t_object *object)
  * @return EXIT_FAILURE if malloc problem
  * @warning this function malloc but doesn't free locally!
  */
-static int	creat_add_obj_to_lst(t_list *last_obj)
+static int	creat_add_obj_to_lst(t_list **head)
 {
 	t_list		*new;
 	t_object	*object;
@@ -69,7 +69,7 @@ static int	creat_add_obj_to_lst(t_list *last_obj)
 	new = ft_lstnew(object);
 	if (new == NULL)
 		return (free(object), perror("malloc"), EXIT_FAILURE);
-	last_obj->next = new;
+	ft_lstadd_front(head, new);
 	return (EXIT_SUCCESS);
 }
 
@@ -84,15 +84,14 @@ static int	creat_add_obj_to_lst(t_list *last_obj)
  * @warning this function update the linked list's cursor to the last object!
  */
 int	parse_geometry(char *rest, int parse_func(char *, t_object *),
-			t_list **last_obj, t_data *data)
+			t_list **head, t_data *data)
 {
 	if (parse_func)
 	{
-		if (creat_add_obj_to_lst(*last_obj) == EXIT_SUCCESS
-			&& parse_func(rest, (*last_obj)->next->content) == EXIT_SUCCESS)
+		if (creat_add_obj_to_lst(head) == EXIT_SUCCESS
+			&& parse_func(rest, (*head)->content) == EXIT_SUCCESS)
 		{
 			data->nb_objects++;
-			*last_obj = (*last_obj)->next;
 			return (EXIT_SUCCESS);
 		}
 	}
