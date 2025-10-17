@@ -83,7 +83,8 @@ static int	creat_add_obj_to_lst(t_list *last_obj)
  * @return return EXIT_SUCCESS or EXIT_FAILURE
  * @warning this function update the linked list's cursor to the last object!
  */
-int	parse_geometry(char *rest, int parse_func(char *, t_object *), t_list **last_obj, t_data *data)
+int	parse_geometry(char *rest, int parse_func(char *, t_object *),
+			t_list **last_obj, t_data *data)
 {
 	if (parse_func)
 	{

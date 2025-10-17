@@ -8,7 +8,7 @@ bool	is_valid_arg(int argc, char **argv)
 	if (argc != 2)
 		return (error_msg(ERROR_ARG_NUM), false);
 	size = ft_strlen(argv[1]);
-	pos_point = size - 4;
+	pos_point = size - 3;
 	if (ft_strncmp(argv[1] + pos_point, ".rt", 4) != 0)
 		return (error_msg(ERROR_ARG_FORMAT), false);
 	return (true);

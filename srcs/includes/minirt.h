@@ -14,12 +14,12 @@
 # define MINIRT_H
 
 # include "./structures.h"
-# include "../intersections/intersection.h" 
-# include "../vector_operations/vector_operations.h" 
-# include "../get_colors/get_colors.h" 
-# include "../get_pixels_coordinates/get_pixels_coordinates.h"
-# include "../utils/utils.h"
 # include "../parse/parse.h"
-# include "../../minilibx-linux/mlx.h"
+// # include "../intersections/intersection.h" 
+# include "../vector_operations/vector_operations.h" 
+// # include "../get_colors/get_colors.h" 
+// # include "../get_pixels_coordinates/get_pixels_coordinates.h"
+# include "../utils/utils.h"
+// # include "../../minilibx-linux/mlx.h"
 
 #endif
