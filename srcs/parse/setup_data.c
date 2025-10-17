@@ -62,27 +62,27 @@ static int	obj_lst_to_array(t_list *lst, t_object *objects, int count)
 int	setup_data(t_data *data, int argc, char **argv)
 {
 	int		fd;
-	t_list	*obj;
+	t_list	*head;
 	int		obj_count[3];
 
-	obj = NULL;
+	head = NULL;
 	if (is_valid_arg(argc, argv) == false
 		|| open_file_get_fd(&fd, argv[1]) == EXIT_FAILURE
 		|| init_parse_data(data, obj_count) == EXIT_FAILURE)
 		exit(EXIT_FAILURE);
-	if (get_line_and_parse(fd, data, obj, obj_count) == EXIT_FAILURE)
+	if (get_line_and_parse(fd, data, &head, obj_count) == EXIT_FAILURE)
 	{
-		ft_lstclear(&obj, free);
+		ft_lstclear(&head, free);
 		free(data->objects);
 		exit(EXIT_FAILURE);
 	}
 	if (scene_is_valid(data, obj_count) == false)
 		exit(EXIT_FAILURE);
-	if (obj_lst_to_array(obj, data->objects, data->nb_objects) == EXIT_FAILURE)
+	if (obj_lst_to_array(head, data->objects, data->nb_objects) == EXIT_FAILURE)
 	{
-		ft_lstclear(&obj, free);
+		ft_lstclear(&head, free);
 		exit(EXIT_FAILURE);
 	}
-	ft_lstclear(&obj, free);
+	ft_lstclear(&head, free);
 	return (EXIT_SUCCESS);
 }
