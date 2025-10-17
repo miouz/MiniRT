@@ -41,9 +41,9 @@ int	get_line_and_parse(int fd, t_data *data, t_list *obj, int *obj_count)
 		line = get_next_line(fd);
 		if (line == NULL)
 			return (EXIT_SUCCESS);
-		if (line && (line[0] != '\0'
-				|| parse_line_in_file(line, data, &obj, obj_count)
-				== EXIT_FAILURE))
+		if (no_info_in_rest_of_line(line) == false
+			&& parse_line_in_file(line, data, &obj, obj_count)
+			== EXIT_FAILURE)
 			return (free(line), EXIT_FAILURE);
 		free(line);
 		line = NULL;
