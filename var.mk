@@ -18,6 +18,7 @@ NAME := miniRT
 
 MAKE_CMD ?= $(MAKE)
 CC := cc
+CC := clang
 CFLAGS := -Wall -Wextra -Werror
 CFLAGS += -I$(INCLUDE_DIR)
 CFLAGS += -MMD -MP
