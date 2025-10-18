@@ -20,7 +20,7 @@ bool	scene_is_valid(t_data *data, int *obj_count)
 		return (error_msg(ERROR_NO_GEOMETRY), false);
 	if (obj_count[0] != 1
 		|| obj_count[1] != 1
-		|| obj_count[2] != 1)
+		|| obj_count[2] > 1)
 		return (error_msg(ERROR_NO_3_OBJ), false);
 	return (true);
 }
