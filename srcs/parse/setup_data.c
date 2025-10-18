@@ -53,6 +53,12 @@ static int	obj_lst_to_array(t_list *lst, t_object **objects, int count)
 	return (EXIT_SUCCESS);
 }
 
+static void	free_lst_and_exit(t_list **lst)
+{
+	ft_lstclear(lst, free);
+	exit(EXIT_FAILURE);
+}
+
 /**
  * @brief setup data structure from argv
  *
@@ -74,19 +80,12 @@ int	setup_data(t_data *data, int argc, char **argv)
 		|| init_parse_data(data, obj_count) == EXIT_FAILURE)
 		exit(EXIT_FAILURE);
 	if (get_line_and_parse(fd, data, &head, obj_count) == EXIT_FAILURE)
-	{
-		ft_lstclear(&head, free);
-		free(data->objects);
-		exit(EXIT_FAILURE);
-	}
+		free_lst_and_exit(&head);
 	if (scene_is_valid(data, obj_count) == false)
-		exit(EXIT_FAILURE);
+		free_lst_and_exit(&head);
 	if (obj_lst_to_array(head, &data->objects, data->nb_objects)
 		== EXIT_FAILURE)
-	{
-		ft_lstclear(&head, free);
-		exit(EXIT_FAILURE);
-	}
+		free_lst_and_exit(&head);
 	ft_lstclear(&head, free);
 	return (EXIT_SUCCESS);
 }
