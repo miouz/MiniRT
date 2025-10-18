@@ -19,23 +19,23 @@ include var.mk
 
 #Default target
 all: $(NAME)
-	@echo "$(GREEN)$(BOLD)✓ Build complete!$(RESET)"
+	@printf "$(GREEN)$(BOLD)✓ Build complete!\n$(RESET)"
 
 #Link the final executable
 $(NAME): $(OBJS) $(MINILIBX)
-	@echo "$(CYAN)Linking $(NAME)...$(RESET)"
+	@printf "$(CYAN)Linking $(NAME)...$(RESET)"
 	@$(CC) $(CFLAGS) $(OBJS) $(LFLAGS) -o $(NAME)
-	@echo "$(GREEN)$(BOLD)✓ $(NAME) created successfully!$(RESET)"
+	@printf "$(GREEN)$(BOLD)✓ $(NAME) created successfully!\n$(RESET)"
 
 #Compile source files to object files
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
-	@printf '$(YELLOW)Woah Compiling $<... (ﾉ◕ヮ◕)ﾉ$(RESET)'
+	@printf '$(YELLOW)Woah Compiling $<... (ﾉ◕ヮ◕)ﾉ\n$(RESET)'
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 #Build MLX library
 $(MINILIBX):
-	@echo "$(CYAN)Building this ancient minilibx... p(-,, - )q$(RESET)"
+	@printf "$(CYAN)Building this ancient minilibx... p(-,, - )q\n$(RESET)"
 	@make -C $(MINILIBX_DIR)
 
 #Include dependency files
@@ -48,17 +48,17 @@ $(MINILIBX):
 #Compile with -g flag
 debug: CFLAGS += $(DEBUG_FLAGS)
 debug: fclean all
-	@echo "$(CYAN)Compiling with debug flag...$(RESET)"
+	@printf "$(CYAN)Compiling with debug flag...\n$(RESET)"
 
 #Run with valgrind
 valgrind: debug
-	@echo "$(CYAN)Running valgrind...$(RESET)"
+	@printf "$(CYAN)Running valgrind...\n$(RESET)"
 	valgrind --leak-check=full \
 	         --show-leak-kinds=all \
 	         --track-origins=yes \
 	         --verbose \
 	         --log-file=valgrind-out.txt \
-	         ./$(NAME) scenes/test.rt
+	         ./$(NAME) scenetest.rt
 
 #Run unit test with criterion
 test: fclean
