@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mzhou <mzhou@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/16 13:01:39 by mzhou             #+#    #+#             */
+/*   Updated: 2025/10/20 10:50:14 by mzhou            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minirt.h"
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
@@ -24,13 +36,6 @@ bool	is_white_space(int c)
 bool	ft_isdigit(int c)
 {
 	if ((c >= '0') && (c <= '9'))
-		return (true);
-	return (false);
-}
-
-bool	is_negative_sign(char c)
-{
-	if (c == '-')
 		return (true);
 	return (false);
 }

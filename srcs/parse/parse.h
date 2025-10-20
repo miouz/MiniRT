@@ -66,7 +66,8 @@ int		parse_camera(char *rest, t_data *data);
 int		parse_light(char *rest, t_data *data);
 
 /*==================================PARSE_GEOMETRY===========================*/
-int		parse_geometry(char *rest, int parse_func(char *, t_object *), t_list **last_obj, t_data *data);
+int		parse_geometry(char *rest, int parse_func(char *, t_object *),
+			t_list **last_obj, t_data *data);
 int		parse_plane(char *rest, t_object *object);
 int		parse_cylinder(char *rest, t_object *object);
 int		parse_sphere(char *rest, t_object *object);
@@ -89,7 +90,6 @@ bool	is_negative_sign(char c);
 bool	is_normalized_vector(t_coordinates vector);
 bool	scene_is_valid(t_data *data, int *obj_count);
 bool	is_valid_arg(int argc, char **argv);
-
 
 /*==================================UTILS===========================*/
 int		ft_atod_check_format(char *str, double *result);

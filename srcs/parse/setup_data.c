@@ -26,9 +26,6 @@ static int	init_parse_data(t_data *data, int *obj_count)
 	data->nb_objects = 0;
 	data->objects = NULL;
 	data->one_spot_light = false;
-	// data->light.color = (t_color){0, 0, 0};
-	// data->light.intensity = 0.0;
-	// data->light.source = (t_coordinates){0.0, 0.0, 0.0};
 	obj_count[0] = 0;
 	obj_count[1] = 0;
 	return (EXIT_SUCCESS);
