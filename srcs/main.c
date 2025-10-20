@@ -6,7 +6,7 @@
 /*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 16:38:44 by anony             #+#    #+#             */
-/*   Updated: 2025/10/20 13:19:30 by anony            ###   ########.fr       */
+/*   Updated: 2025/10/20 16:40:52 by anony            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,20 @@ int	free_data_and_exit(t_data *data)
 	return (0);
 }
 
+int	free_data_and_exit_empty(t_data *data)
+{
+	mlx_destroy_image(data->minilibx.mlx_p, data->minilibx.img_p);
+	mlx_destroy_window(data->minilibx.mlx_p, data->minilibx.win_p);
+	mlx_destroy_display(data->minilibx.mlx_p);
+	free(data->minilibx.mlx_p);
+	exit(EXIT_SUCCESS);
+	return (0);
+}
+
 int	keyboard_event(int keycode, t_data *data)
 {
 	if (keycode == 0xff1b)
-		free_data_and_exit(data);
+		free_data_and_exit_empty(data);
 	return (0);
 }
 
@@ -113,6 +123,15 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
+	if (argc ==1)
+	{
+	initialize_minilibx(&data.minilibx);
+	mlx_put_image_to_window(data.minilibx.mlx_p, data.minilibx.win_p,
+		data.minilibx.img_p, 0, 0);
+	mlx_hook(data.minilibx.win_p, 17, 0, &free_data_and_exit_empty, &data);
+	mlx_hook(data.minilibx.win_p, 2, 1L << 0, &keyboard_event, &data);
+	mlx_loop(data.minilibx.mlx_p);
+	}
 	setup_data(&data, argc, argv);
 	print_parsing(&data);
 	init_pixel_intersects(&data);
