@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/minirt.h"
+#include <stdbool.h>
 
 static int	open_file_get_fd(int *fd, char *file_name)
 {
@@ -24,9 +25,12 @@ static int	init_parse_data(t_data *data, int *obj_count)
 {
 	data->nb_objects = 0;
 	data->objects = NULL;
+	data->one_spot_light = false;
+	// data->light.color = (t_color){0, 0, 0};
+	// data->light.intensity = 0.0;
+	// data->light.source = (t_coordinates){0.0, 0.0, 0.0};
 	obj_count[0] = 0;
 	obj_count[1] = 0;
-	obj_count[2] = 0;
 	return (EXIT_SUCCESS);
 }
 
@@ -72,7 +76,7 @@ int	setup_data(t_data *data, int argc, char **argv)
 {
 	int		fd;
 	t_list	*head;
-	int		obj_count[3];
+	int		obj_count[2];
 
 	head = NULL;
 	if (is_valid_arg(argc, argv) == false

@@ -25,7 +25,7 @@
 # define ERROR_PLANE "Error: plane not correct\n"
 # define ERROR_CYLINDER "Error: cylinder not correct\n"
 # define ERROR_NO_GEOMETRY "Error: no geometry in scene\n"
-# define ERROR_NO_3_OBJ "Error: need 1 ambient light, 1 light and 1 camera\n"
+# define ERROR_NO_2_OBJ "Error: need 1 ambient light and 1 camera\n"
 
 /*==================================NUMBERS===========================*/
 # define MAX_DOUBLE_INT_COUNT 9

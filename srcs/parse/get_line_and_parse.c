@@ -22,7 +22,7 @@ static int	parse_line_in_file(char *line, t_data *data,
 	if (ft_strncmp(line, "C", 1) == 0)
 		return (obj_count[1]++, parse_camera(line + 1, data));
 	if (ft_strncmp(line, "L", 1) == 0)
-		return (obj_count[2]++, parse_light(line + 1, data));
+		return (parse_light(line + 1, data));
 	if (ft_strncmp(line, "sp", 2) == 0)
 		return (parse_geometry(line + 2, &parse_sphere, last_obj, data));
 	if (ft_strncmp(line, "pl", 2) == 0)

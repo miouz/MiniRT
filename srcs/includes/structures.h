@@ -16,6 +16,7 @@
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <stdbool.h>
 
 # define HEIGHT 800
 # define LENGHT 800
@@ -152,6 +153,7 @@ typedef struct s_data
 {
 	t_camera			camera;
 	t_ambient_lighting	ambient_lighting;
+	bool				one_spot_light;
 	t_light				light;
 	t_object			*objects;
 	int					nb_objects;

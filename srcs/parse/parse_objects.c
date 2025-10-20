@@ -31,14 +31,12 @@ int	parse_camera(char *rest, t_data *data)
 
 int	parse_light(char *rest, t_data *data)
 {
-	static bool	one_light;
-
-	if (one_light == true)
+	if (data->one_spot_light == true)
 		return (error_msg(ERROR_LIGHT), EXIT_FAILURE);
 	if (get_next_coordinates(&rest, &data->light.source) == EXIT_SUCCESS
 		&& get_next_double_in_range(&rest,
 			&data->light.intensity, 0, 1) == EXIT_SUCCESS
 		&& get_next_color(&rest, &data->light.color) == EXIT_SUCCESS)
-		return (one_light = true, EXIT_SUCCESS);
+		return (data->one_spot_light = true, EXIT_SUCCESS);
 	return (error_msg(ERROR_LIGHT), EXIT_FAILURE);
 }
