@@ -30,11 +30,65 @@ int	init_pixel_intersects(t_data *data)
 	return (EXIT_SUCCESS);
 }
 
+int	print_parsing(t_data *data)
+{
+	printf("ambient_light:\n");
+	printf("intensity: %f\n", data->ambient_lighting.intensity);
+	printf("color is :%d, %d, %d\n", data->ambient_lighting.color.red, data->ambient_lighting.color.green, data->ambient_lighting.color.blue);
+	printf("--------------------------\n");
+
+	printf("camara :\n");
+	printf("camera center is: %f, %f, %f\n", data->camera.center.x, data->camera.center.y, data->camera.center.z);
+	printf("camera vector is: %f, %f, %f\n", data->camera.direction.x, data->camera.direction.y, data->camera.direction.z);
+	printf("camera fov is: %d\n", data->camera.fov);
+	printf("--------------------------\n");
+
+	printf("spot_light:\n");
+	printf("light center is: %f, %f, %f\n", data->light.source.x, data->light.source.y, data->light.source.z);
+	printf("intensity: %f\n", data->light.intensity);
+	printf("--------------------------\n");
+	
+	int obj_index = 0;
+	while (obj_index < data->nb_objects)
+	{
+		if (data->objects[obj_index].type == SPHERE)
+		{
+			printf("SPHERE:\n");
+			printf("sphere center is: %f, %f, %f\n", data->objects[obj_index].data.sphere.center.x, data->objects[obj_index].data.sphere.center.y, data->objects[obj_index].data.sphere.center.z);
+			printf("sphere diameter is: %f\n", data->objects[obj_index].data.sphere.diameter);
+			printf("color is :%d, %d, %d\n", data->objects[obj_index].color.red, data->objects[obj_index].color.green, data->objects[obj_index].color.blue);
+			printf("--------------------------\n");
+		}
+
+		if (data->objects[obj_index].type == CYLINDER)
+		{
+			printf("CYLINDER:\n");
+			printf("cylinder center is: %f, %f, %f\n", data->objects[obj_index].data.cylinder.center.x, data->objects[obj_index].data.cylinder.center.y, data->objects[obj_index].data.cylinder.center.z);
+			printf("cylinder vector is: %f, %f, %f\n", data->objects[obj_index].data.cylinder.axis_vector.x, data->objects[obj_index].data.cylinder.axis_vector.y, data->objects[obj_index].data.cylinder.axis_vector.z);
+			printf("cylinder diameter is: %f\n", data->objects[obj_index].data.cylinder.diameter);
+			printf("cylinder height is: %f\n", data->objects[obj_index].data.cylinder.height);
+			printf("color is :%d, %d, %d\n", data->objects[obj_index].color.red, data->objects[obj_index].color.green, data->objects[obj_index].color.blue);
+			printf("--------------------------\n");
+		}
+		if (data->objects[obj_index].type == PLANE)
+		{
+			printf("PLANE:\n");
+			printf("plane center is: %f, %f, %f\n", data->objects[obj_index].data.plane.point.x, data->objects[obj_index].data.plane.point.y, data->objects[obj_index].data.plane.point.z);
+			printf("plane vector is: %f, %f, %f\n", data->objects[obj_index].data.plane.ortho_vector.x, data->objects[obj_index].data.plane.ortho_vector.y, data->objects[obj_index].data.plane.ortho_vector.z);
+			printf("color is :%d, %d, %d\n", data->objects[obj_index].color.red, data->objects[obj_index].color.green, data->objects[obj_index].color.blue);
+			printf("--------------------------\n");
+		}
+		obj_index++;
+	}
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	data;
 
 	setup_data(&data, argc, argv);
+	print_parsing(&data);
 	init_pixel_intersects(&data);
 	initialize_minilibx(&data.minilibx);
 	get_pixels_coordinates(&data);
