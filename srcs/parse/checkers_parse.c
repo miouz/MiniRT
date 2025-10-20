@@ -2,7 +2,7 @@
 
 bool	is_normalized_vector(t_coordinates vector)
 {
-	if (vec_magnitude(vector) == 1)
+	if (vec_magnitude(vector) - 1 < EPSILON)
 		return (true);
 	return (false);
 }

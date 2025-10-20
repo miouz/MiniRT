@@ -6,7 +6,7 @@
 /*   By: anony <anony@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 16:38:44 by anony             #+#    #+#             */
-/*   Updated: 2025/10/02 19:11:42 by anony            ###   ########.fr       */
+/*   Updated: 2025/10/20 13:19:30 by anony            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,13 @@ int	print_parsing(t_data *data)
 	printf("camera fov is: %d\n", data->camera.fov);
 	printf("--------------------------\n");
 
+	if (data->one_spot_light)
+	{
 	printf("spot_light:\n");
 	printf("light center is: %f, %f, %f\n", data->light.source.x, data->light.source.y, data->light.source.z);
 	printf("intensity: %f\n", data->light.intensity);
 	printf("--------------------------\n");
+	}
 	
 	int obj_index = 0;
 	while (obj_index < data->nb_objects)
