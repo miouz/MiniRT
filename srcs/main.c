@@ -83,6 +83,29 @@ int	print_parsing(t_data *data)
 	return (0);
 }
 
+int	free_data_and_exit(t_data *data)
+{
+	mlx_destroy_image(data->minilibx.mlx_p, data->minilibx.img_p);
+	mlx_destroy_window(data->minilibx.mlx_p, data->minilibx.win_p);
+	mlx_destroy_display(data->minilibx.mlx_p);
+	free(data->minilibx.mlx_p);
+	free(data->intersects);
+	free(data->pixels);
+	free(data->objects);
+	data->intersects = NULL;
+	data->pixels = NULL;
+	data->objects = NULL;
+	exit(EXIT_SUCCESS);
+	return (0);
+}
+
+int	keyboard_event(int keycode, t_data *data)
+{
+	if (keycode == 0xff1b)
+		free_data_and_exit(data);
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	data;
@@ -96,7 +119,8 @@ int	main(int argc, char **argv)
 	get_colors(&data, data.minilibx.line);
 	mlx_put_image_to_window(data.minilibx.mlx_p, data.minilibx.win_p,
 		data.minilibx.img_p, 0, 0);
+	mlx_hook(data.minilibx.win_p, 17, 0, &free_data_and_exit, &data);
+	mlx_hook(data.minilibx.win_p, 2, 1L << 0, &keyboard_event, &data);
 	mlx_loop(data.minilibx.mlx_p);
-    // clean(data);
-	return (0);
+	return (EXIT_SUCCESS);
 }
