@@ -78,7 +78,8 @@ PIXELS_SRC := $(PIXELS_DIR)/get_screen.c \
 
 #Utils
 UTILS_SRC := $(UTILS_DIR)/utils.c \
-			 $(UTILS_DIR)/minilibx.c
+			 $(UTILS_DIR)/minilibx.c \
+			 $(UTILS_DIR)/display_empty_window.c
 
 #Parsing
 PARSING_SRC := $(PARSING_DIR)/checkers_parse.c \
