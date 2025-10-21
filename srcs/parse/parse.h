@@ -35,7 +35,7 @@
 # define MAX_DOUBLE 9999999
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 1024
 # endif
 
 # include <fcntl.h>
@@ -45,15 +45,6 @@
 # include <stdio.h>
 # include <math.h>
 # include <limits.h>
-
-//get_next_line_structure
-//bu = buffer, i = index, r = read_size
-typedef struct s_dat
-{
-	char	*bu;
-	size_t	i;
-	size_t	r;
-}	t_dat;
 
 /*==================================PARSE_FUNC===========================*/
 int		check_and_jump_spaces(char **line);
