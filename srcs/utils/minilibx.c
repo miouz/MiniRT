@@ -22,7 +22,7 @@ int	close_minilibx(t_minilibx_data *data)
 		mlx_destroy_display(data->mlx_p);
 	if (data->mlx_p)
 		free(data->mlx_p);
-	exit(0);
+	return (EXIT_SUCCESS);
 }
 
 void	initialize_minilibx(t_minilibx_data *minilibx)
@@ -47,5 +47,8 @@ void	initialize_minilibx(t_minilibx_data *minilibx)
 	minilibx->colors = mlx_get_data_addr(minilibx->img_p, &minilibx->bpp,
 			&minilibx->line, &minilibx->end);
 	if (minilibx->colors == NULL)
+	{
 		close_minilibx(minilibx);
+		exit(EXIT_FAILURE);
+	}
 }
