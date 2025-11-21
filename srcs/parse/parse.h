@@ -14,18 +14,18 @@
 # define PARSE_H
 
 /*==============================ERROR_MSG===================================*/
-# define ERROR_ARG_NUM "Error: please run ./miniRT <file's name>\n"
-# define ERROR_ARG_FORMAT "Error: file's name should terminate with .rt\n"
-# define ERROR_SCENE_FILE "Error: fail to generate scene with file\n"
-# define ERROR_DOUBLE_FORMAT "Error: need less than 9(int) + 5(frac) digits\n"
-# define ERROR_AML "Error: ambient light not correct\n"
-# define ERROR_CAM "Error: camera not correct\n"
-# define ERROR_LIGHT "Error: light not correct\n"
-# define ERROR_SPHERE "Error: sphere not correct\n"
-# define ERROR_PLANE "Error: plane not correct\n"
-# define ERROR_CYLINDER "Error: cylinder not correct\n"
-# define ERROR_NO_GEOMETRY "Error: no geometry in scene\n"
-# define ERROR_NO_2_OBJ "Error: need 1 ambient light and 1 camera\n"
+# define ERROR_ARG_NUM "Error\nPlease run ./miniRT <file's name>\n"
+# define ERROR_ARG_FORMAT "Error\nFile's name should terminate with .rt\n"
+# define ERROR_SCENE_FILE "Error\nFail to generate scene with file\n"
+# define ERROR_DOUBLE_FORMAT "Error\nNeed less than 9(int) + 5(frac) digits\n"
+# define ERROR_AML "Error\nAmbient light not correct\n"
+# define ERROR_CAM "Error\nCamera not correct\n"
+# define ERROR_LIGHT "Error\nLight not correct\n"
+# define ERROR_SPHERE "Error\nSphere not correct\n"
+# define ERROR_PLANE "Error\nPlane not correct\n"
+# define ERROR_CYLINDER "Error\nCylinder not correct\n"
+# define ERROR_NO_GEOMETRY "Error\nNo geometry in scene\n"
+# define ERROR_NO_2_OBJ "Error\nNeed 1 ambient light and 1 camera\n"
 
 /*==================================NUMBERS===========================*/
 # define MAX_DOUBLE_INT_COUNT 9
@@ -45,6 +45,14 @@
 # include <stdio.h>
 # include <math.h>
 # include <limits.h>
+
+//bu = buffer, i = index, r  = read_size
+typedef struct s_dat
+{
+	char	bu[BUFFER_SIZE];
+	size_t	i;
+	size_t	r;
+}	t_dat;
 
 /*==================================PARSE_FUNC===========================*/
 int		check_and_jump_spaces(char **line);
@@ -97,5 +105,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 char	*get_next_line(int fd);
 void	*ft_memchr(const void *s, int c, size_t n);
+char	*ft_str_n_join(char *s1, char *s2, size_t n);
+void	*ft_memset(void *s, int c, size_t n);
 
 #endif // !PARSE_H

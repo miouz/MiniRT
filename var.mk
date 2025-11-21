@@ -92,7 +92,8 @@ PARSING_SRC := $(PARSING_DIR)/checkers_parse.c \
 			   $(PARSING_DIR)/ft_memchr.c \
 			   $(PARSING_DIR)/ft_memcpy.c \
 			   $(PARSING_DIR)/get_line_and_parse.c \
-			   $(PARSING_DIR)/get_next_line.c \
+			   $(PARSING_DIR)/get_line.c \
+			   $(PARSING_DIR)/get_line_utils.c \
 			   $(PARSING_DIR)/getters_double.c \
 			   $(PARSING_DIR)/getters_int.c \
 			   $(PARSING_DIR)/parse_geometries.c \

@@ -14,8 +14,8 @@
 # define VECTOR_OPERATIONS_H
 
 /*==============================ERROR_MSG===================================*/
-# define ERROR_VEC_TYPE "Error: vector conversion type error\n"
-# define ERROR_DIVISION_ZERO "Error: division by zero\n"
+# define ERROR_VEC_TYPE "Error\nVector conversion type error\n"
+# define ERROR_DIVISION_ZERO "Error\nDivision by zero\n"
 
 /*==============================VECTO_OPERATIONS===========================*/
 t_coordinates	vec_substract(t_coordinates a, t_coordinates b);

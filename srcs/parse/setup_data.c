@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../includes/minirt.h"
-#include <stdbool.h>
 
 static int	open_file_get_fd(int *fd, char *file_name)
 {
